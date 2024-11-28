@@ -1,0 +1,17 @@
+﻿@model List<Dierentuin.Models.Animal>  // Make sure your model matches the controller action
+
+<h2>Animals</h2>
+
+@if (Model != null && Model.Any())
+{
+    <ul>
+        @foreach (var animal in Model)
+        {
+            <li>@animal.Name (@animal.Species)</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No animals found.</p>
+}
