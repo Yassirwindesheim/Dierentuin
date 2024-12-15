@@ -1,10 +1,10 @@
-﻿// Models/Zoo.cs
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Dierentuin.Models
 {
     public class Zoo
     {
+        public int Id { get; set; }  // Primary key
         public List<Animal> Animals { get; set; }
         public List<Enclosure> Enclosures { get; set; }
 

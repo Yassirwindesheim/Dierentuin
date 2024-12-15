@@ -1,0 +1,407 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\models\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\models\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\models\\zoo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\models\\zoo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\views\\animal\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\views\\animal\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\services\\animalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\services\\animalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\controllers\\animalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\controllers\\animalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\models\\animal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\models\\animal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\enum\\securitylevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\enum\\securitylevel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\controllers\\enumhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\controllers\\enumhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\enum\\activitypattern.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\enum\\activitypattern.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\enum\\habitattype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\enum\\habitattype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\enum\\dietaryclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\enum\\dietaryclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\enum\\climate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\enum\\climate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\enum\\animalsize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\enum\\animalsize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\views\\animal\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\views\\animal\\create.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\services\\zooservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\services\\zooservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\data\\zoocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\data\\zoocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\views\\animal\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\views\\animal\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\models\\enclosure.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\models\\enclosure.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\views\\animal\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\views\\animal\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|c:\\users\\kenki\\source\\repos\\dierentuingoede\\dierentuin\\dierentuin\\migrations\\20241128130948_seedinitialdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34FE01B8-E22F-4B34-9C68-24DC740A3353}|Dierentuin\\Dierentuin.csproj|solutionrelative:dierentuin\\migrations\\20241128130948_seedinitialdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 15,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Dierentuin\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Dierentuin\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-11T14:45:51.507Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EnumHelper.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Controllers\\EnumHelper.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Controllers\\EnumHelper.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Controllers\\EnumHelper.cs",
+              "RelativeToolTip": "Dierentuin\\Controllers\\EnumHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T14:57:16.729Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SecurityLevel.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\SecurityLevel.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Enum\\SecurityLevel.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\SecurityLevel.cs",
+              "RelativeToolTip": "Dierentuin\\Enum\\SecurityLevel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T14:50:05.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DietaryClass.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\DietaryClass.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Enum\\DietaryClass.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\DietaryClass.cs",
+              "RelativeToolTip": "Dierentuin\\Enum\\DietaryClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T14:50:02.22Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AnimalSize.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\AnimalSize.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Enum\\AnimalSize.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\AnimalSize.cs",
+              "RelativeToolTip": "Dierentuin\\Enum\\AnimalSize.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T14:45:53.496Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ZooService.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Services\\ZooService.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Services\\ZooService.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Services\\ZooService.cs",
+              "RelativeToolTip": "Dierentuin\\Services\\ZooService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T14:14:35.921Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ZooContext.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Data\\ZooContext.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Data\\ZooContext.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Data\\ZooContext.cs",
+              "RelativeToolTip": "Dierentuin\\Data\\ZooContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T14:14:28.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AnimalService.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Services\\AnimalService.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Services\\AnimalService.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Services\\AnimalService.cs",
+              "RelativeToolTip": "Dierentuin\\Services\\AnimalService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T13:19:14.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "20241128130948_SeedInitialData.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Migrations\\20241128130948_SeedInitialData.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Migrations\\20241128130948_SeedInitialData.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Migrations\\20241128130948_SeedInitialData.cs",
+              "RelativeToolTip": "Dierentuin\\Migrations\\20241128130948_SeedInitialData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T13:09:48.391Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ActivityPattern.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\ActivityPattern.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Enum\\ActivityPattern.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\ActivityPattern.cs",
+              "RelativeToolTip": "Dierentuin\\Enum\\ActivityPattern.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T13:08:36.427Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "HabitatType.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\HabitatType.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Enum\\HabitatType.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\HabitatType.cs",
+              "RelativeToolTip": "Dierentuin\\Enum\\HabitatType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T13:08:19.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Climate.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\Climate.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Enum\\Climate.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Enum\\Climate.cs",
+              "RelativeToolTip": "Dierentuin\\Enum\\Climate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T13:07:58.136Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Enclosure.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\Enclosure.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Models\\Enclosure.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\Enclosure.cs",
+              "RelativeToolTip": "Dierentuin\\Models\\Enclosure.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA9wB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T13:05:38.514Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Models\\Category.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\Category.cs",
+              "RelativeToolTip": "Dierentuin\\Models\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T13:05:32.803Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Animal.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\Animal.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Models\\Animal.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\Animal.cs",
+              "RelativeToolTip": "Dierentuin\\Models\\Animal.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAA4wCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T13:05:18.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DBContext.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\DBContext.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Models\\DBContext.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\DBContext.cs",
+              "RelativeToolTip": "Dierentuin\\Models\\DBContext.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAwwBoAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T12:55:11.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Zoo.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\Zoo.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Models\\Zoo.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Models\\Zoo.cs",
+              "RelativeToolTip": "Dierentuin\\Models\\Zoo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T12:54:58.534Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Program.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Program.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Program.cs",
+              "RelativeToolTip": "Dierentuin\\Program.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAqwDAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T12:41:43.761Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\appsettings.json",
+              "RelativeDocumentMoniker": "Dierentuin\\appsettings.json",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\appsettings.json",
+              "RelativeToolTip": "Dierentuin\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-28T12:46:44.472Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AnimalController.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Controllers\\AnimalController.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Controllers\\AnimalController.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Controllers\\AnimalController.cs",
+              "RelativeToolTip": "Dierentuin\\Controllers\\AnimalController.cs",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAYwL8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T12:40:48.103Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "index.cshtml",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Views\\Animal\\index.cshtml",
+              "RelativeDocumentMoniker": "Dierentuin\\Views\\Animal\\index.cshtml",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Views\\Animal\\index.cshtml",
+              "RelativeToolTip": "Dierentuin\\Views\\Animal\\index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-28T12:39:11.946Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Views\\Animal\\delete.cshtml",
+              "RelativeDocumentMoniker": "Dierentuin\\Views\\Animal\\delete.cshtml",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Views\\Animal\\delete.cshtml",
+              "RelativeToolTip": "Dierentuin\\Views\\Animal\\delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-28T12:39:06.992Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "create.cshtml",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Views\\Animal\\create.cshtml",
+              "RelativeDocumentMoniker": "Dierentuin\\Views\\Animal\\create.cshtml",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Views\\Animal\\create.cshtml",
+              "RelativeToolTip": "Dierentuin\\Views\\Animal\\create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-28T12:38:59.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "create.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Views\\Animal\\create.cshtml.cs",
+              "RelativeDocumentMoniker": "Dierentuin\\Views\\Animal\\create.cshtml.cs",
+              "ToolTip": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Views\\Animal\\create.cshtml.cs",
+              "RelativeToolTip": "Dierentuin\\Views\\Animal\\create.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-28T12:39:02.134Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,6 @@
+using Dierentuin.Models;
 using Dierentuin.Services; // Ensure you have this using directive
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization; // Add this to use JsonStringEnumConverter
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,9 @@ builder.Services.AddControllersWithViews().AddJsonOptions(options =>
     // This will allow enums to be serialized/deserialized as both string or numeric values
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
+
+builder.Services.AddDbContext<DBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

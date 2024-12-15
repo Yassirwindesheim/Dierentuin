@@ -1,4 +1,61 @@
-﻿@page
-@model Dierentuin.Views.Animal.createModel
-@{
+﻿@model Dierentuin.Models.Animal
+
+<h2>Create Animal</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control">
+            <option value="">Select a category</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EnclosureId">Enclosure</label>
+        <select asp-for="EnclosureId" asp-items="ViewBag.Enclosures" class="form-control">
+            <option value="">Select an enclosure</option>
+        </select>
+        <span asp-validation-for="EnclosureId" class="text-danger"></span>
+    </div>
+
+        <div class="form-group">
+            <label asp-for="Size">Animal Size</label>
+            <select asp-for="Size" asp-items="ViewBag.AnimalSizes" class="form-control"></select>
+            <span asp-validation-for="Size" class="text-danger"></span>
+        </div>
+
+
+    <div class="form-group">
+        <label asp-for="ActivityPattern">Activity Pattern</label>
+        <select asp-for="ActivityPattern" asp-items="ViewBag.ActivityPatterns" class="form-control"></select>
+        <span asp-validation-for="ActivityPattern" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Diet">Diet</label>
+        <select asp-for="Diet" asp-items="ViewBag.Diets" class="form-control"></select>
+        <span asp-validation-for="Diet" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SecurityRequirement">Security Level</label>
+        <select asp-for="SecurityRequirement" asp-items="ViewBag.SecurityLevels" class="form-control"></select>
+        <span asp-validation-for="SecurityRequirement" class="text-danger"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
