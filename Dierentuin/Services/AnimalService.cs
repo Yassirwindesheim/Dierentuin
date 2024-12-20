@@ -56,7 +56,6 @@ namespace Dierentuin.Services
             }
             return existingAnimal;
         }
-
         public bool DeleteAnimal(int id)
         {
             var animalToDelete = _context.Animals.FirstOrDefault(a => a.Id == id);

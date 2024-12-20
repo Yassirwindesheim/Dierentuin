@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Dierentuin.csproj": {}
+    "C:\\Users\\yassi\\Dierentuin2\\Dierentuin\\Dierentuin\\Dierentuin.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Dierentuin.csproj": {
+    "C:\\Users\\yassi\\Dierentuin2\\Dierentuin\\Dierentuin\\Dierentuin.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Dierentuin.csproj",
+        "projectUniqueName": "C:\\Users\\yassi\\Dierentuin2\\Dierentuin\\Dierentuin\\Dierentuin.csproj",
         "projectName": "Dierentuin",
-        "projectPath": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\Dierentuin.csproj",
-        "packagesPath": "C:\\Users\\kenki\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kenki\\source\\repos\\DierenTuinGoede\\Dierentuin\\Dierentuin\\obj\\",
+        "projectPath": "C:\\Users\\yassi\\Dierentuin2\\Dierentuin\\Dierentuin\\Dierentuin.csproj",
+        "packagesPath": "C:\\Users\\yassi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yassi\\Dierentuin2\\Dierentuin\\Dierentuin\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\kenki\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\yassi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.404/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

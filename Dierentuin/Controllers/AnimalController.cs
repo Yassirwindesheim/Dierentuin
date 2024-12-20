@@ -38,7 +38,7 @@ namespace Dierentuin.Controllers
         }
 
 
-        // Action for creating a new animal (GET)
+      
         // Action for creating a new animal (GET)
         public IActionResult Create()
         {
@@ -136,21 +136,34 @@ namespace Dierentuin.Controllers
         // Action for deleting an animal (GET)
         public IActionResult Delete(int id)
         {
-            var animal = _animalService.GetAnimalById(id);
+            var animal = _animalService.GetAnimalById(id);  // Fetch the animal by ID
             if (animal == null)
             {
-                return NotFound();
+                Console.WriteLine("Animal not found for ID: " + id);  // Debugging log
+                return NotFound();  // Return 404 if the animal doesn't exist
             }
-            return View(animal);
+            Console.WriteLine("Animal found: " + animal.Name);  // Debugging log
+            return View(animal);  // Pass the animal to the view
         }
 
-        // Action for deleting an animal (POST)
+
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)
         {
-            _animalService.DeleteAnimal(id);
-            return RedirectToAction("Index");
+            Console.WriteLine($"Attempting to delete animal with ID: {id}");
+            var success = _animalService.DeleteAnimal(id);
+            if (success)
+            {
+                Console.WriteLine("Animal deleted successfully.");
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Console.WriteLine("Animal not found for deletion.");
+                return NotFound();
+            }
         }
+
 
         // Action for Sunrise (for an individual animal)
         public IActionResult Sunrise(int id)

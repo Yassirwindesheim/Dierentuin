@@ -5,9 +5,9 @@ using Dierentuin.Models;
 
 public class Enclosure
 {
-    public int Id { get; set; }                 // Unique identifier
+    public int? Id { get; set; }                 // Unique identifier
 
-    [Required]
+  
     public string Name { get; set; }            // Name of the enclosure
 
     public Climate Climate { get; set; }        // Climate of the enclosure (enum: Tropical, Temperate, etc.)
@@ -19,7 +19,7 @@ public class Enclosure
     public double Size { get; set; }            // Size in square meters
 
     // Relationships
-    public List<Animal> Animals { get; set; }   // List of animals in the enclosure
+    public List<Animal>? Animals { get; set; }   // List of animals in the enclosure
 
     // Constructor to initialize the Animals list
     public Enclosure()

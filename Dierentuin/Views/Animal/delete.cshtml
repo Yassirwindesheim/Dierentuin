@@ -1,4 +1,18 @@
-﻿@page
-@model Dierentuin.Views.Animal.deleteModel
-@{
+﻿@model Dierentuin.Models.Animal
+
+<h2>Delete Animal</h2>
+
+@if (Model != null)
+{
+    <p>Are you sure you want to delete the animal <strong>@Model.Name</strong>?</p>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="@Url.Action("Index", "Animal")" class="btn btn-secondary">Cancel</a>
+    </form>
+}
+else
+{
+    <p>Animal not found.</p>
 }
