@@ -1,4 +1,16 @@
-﻿@page
-@model Dierentuin.Views.Category.detailsModel
+﻿@model Dierentuin.Models.Category
+
 @{
+    ViewData["Title"] = "Category Details";
 }
+
+<h2>@Model.Name</h2>
+
+<div>
+    <strong>Category ID:</strong> @Model.Id
+</div>
+<div>
+    <strong>Category Name:</strong> @Model.Name
+</div>
+
+<a href="@Url.Action("Index")" class="btn btn-primary">Back to List</a>

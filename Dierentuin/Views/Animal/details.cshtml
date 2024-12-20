@@ -1,1 +1,27 @@
-﻿
+﻿@model Dierentuin.Models.Animal
+
+@{
+    ViewData["Title"] = "Animal Details";
+}
+
+<h1>Animal Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h2>@Model.Name (@Model.Species)</h2>
+    </div>
+    <div class="card-body">
+        <p><strong>Size:</strong> @Model.Size</p>
+        <p><strong>Diet:</strong> @Model.Diet</p>
+        <p><strong>Activity Pattern:</strong> @Model.ActivityPattern</p>
+        <p><strong>Space Requirement:</strong> @Model.SpaceRequirement m²</p>
+        <p><strong>Security Requirement:</strong> @Model.SecurityRequirement</p>
+        <p><strong>Category:</strong> @Model.Category?.Name ?? "Uncategorized"</p>
+        <p><strong>Enclosure:</strong> @Model.Enclosure?.Name ?? "No Enclosure Assigned"</p>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    </div>
+</div>

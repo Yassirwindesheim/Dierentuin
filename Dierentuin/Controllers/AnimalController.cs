@@ -29,16 +29,17 @@ namespace Dierentuin.Controllers
         // Action for viewing details of a specific animal
         public IActionResult Details(int id)
         {
-            var animal = _animalService.GetAnimalById(id);  // Retrieve animal details by ID
+            var animal = _animalService.GetAnimalById(id);
             if (animal == null)
             {
-                return NotFound();  // Return 404 if the animal is not found
+                return NotFound(); // Return 404 if the animal is not found
             }
-            return View(animal);  // Pass the animal details to the view
+            return View(animal); // Pass the animal details to the view
         }
 
 
-      
+
+
         // Action for creating a new animal (GET)
         public IActionResult Create()
         {

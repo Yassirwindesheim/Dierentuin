@@ -1,10 +1,14 @@
 ﻿using Dierentuin.Enum;
 using Dierentuin.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dierentuin.Services
+
+
 {
     public class AnimalService
     {
@@ -25,8 +29,21 @@ namespace Dierentuin.Services
 
         public Animal GetAnimalById(int id)
         {
-            return _context.Animals.FirstOrDefault(a => a.Id == id); // Retrieve animal by ID
+            var animal = _context.Animals
+                .Include(a => a.Category)  // Include related Category
+                .Include(a => a.Enclosure) // Include related Enclosure
+                .FirstOrDefault(a => a.Id == id); // Retrieve animal by ID
+
+            // If Category or Enclosure is null, you can set a default or handle accordingly
+            if (animal != null)
+            {
+                animal.Category ??= new Category { Name = "Unknown" };  // Default Category if null
+                animal.Enclosure ??= new Enclosure { Name = "Unknown" };  // Default Enclosure if null
+            }
+
+            return animal;
         }
+
 
         public Animal CreateAnimal(Animal animal)
         {

@@ -81,7 +81,14 @@ namespace Dierentuin.Models
                     CategoryId = 3,
                     EnclosureId = 3
                 }
-                );
+            );
+
+            // Cascade delete configuration between Category and Animal
+            modelBuilder.Entity<Animal>()
+                .HasOne(a => a.Category)  // Each Animal has one Category
+                .WithMany()               // A Category can have many Animals
+                .HasForeignKey(a => a.CategoryId)  // Foreign key on the Animal table
+                .OnDelete(DeleteBehavior.Cascade); // Enable Cascade Delete
         }
     }
 }

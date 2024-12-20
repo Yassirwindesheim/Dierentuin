@@ -1,4 +1,38 @@
-﻿@page
-@model Dierentuin.Views.Category.indexModel
+﻿@model IEnumerable<Dierentuin.Models.Category>
+
 @{
+    ViewData["Title"] = "Categories";
 }
+
+<h2>Categories</h2>
+
+<p>
+    <a href="@Url.Action("Create")" class="btn btn-primary">Create New Category</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>
+                    <!-- Details Button -->
+                    <a href="@Url.Action("Details", new { id = category.Id })" class="btn btn-info">Details</a>
+
+                    <!-- Update Button -->
+                    <a href="@Url.Action("Update", new { id = category.Id })" class="btn btn-warning">Update</a>
+
+                    <!-- Delete Button -->
+                    <a href="@Url.Action("Delete", new { id = category.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
