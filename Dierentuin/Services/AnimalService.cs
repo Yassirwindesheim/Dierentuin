@@ -52,10 +52,17 @@ namespace Dierentuin.Services
                 existingAnimal.Name = updatedAnimal.Name;
                 existingAnimal.ActivityPattern = updatedAnimal.ActivityPattern;
                 existingAnimal.Diet = updatedAnimal.Diet;
-                _context.SaveChanges(); // Save changes to the database
+                existingAnimal.CategoryId = updatedAnimal.CategoryId;
+                existingAnimal.EnclosureId = updatedAnimal.EnclosureId;
+                existingAnimal.SecurityRequirement = updatedAnimal.SecurityRequirement;
+                existingAnimal.SpaceRequirement = updatedAnimal.SpaceRequirement;
+                existingAnimal.Size = updatedAnimal.Size;
+                existingAnimal.Species = updatedAnimal.Species;
+                _context.SaveChanges();
             }
             return existingAnimal;
         }
+
         public bool DeleteAnimal(int id)
         {
             var animalToDelete = _context.Animals.FirstOrDefault(a => a.Id == id);

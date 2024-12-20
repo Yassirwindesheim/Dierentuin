@@ -111,27 +111,43 @@ namespace Dierentuin.Controllers
 
 
         // Action for editing an existing animal (GET)
-        public IActionResult Edit(int id)
+        public IActionResult Update(int id)
         {
+            Console.WriteLine($"Update GET action called for id: {id}");
             var animal = _animalService.GetAnimalById(id);
             if (animal == null)
             {
+                Console.WriteLine($"Animal with id {id} not found");
                 return NotFound();
             }
+            PopulateViewBagForAnimalForm();
             return View(animal);
         }
 
-        // Action for editing an existing animal (POST)
         [HttpPost]
-        public IActionResult Edit(Animal updatedAnimal)
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(Animal updatedAnimal)
         {
             if (ModelState.IsValid)
             {
                 _animalService.UpdateAnimal(updatedAnimal);
                 return RedirectToAction("Index");
             }
+            PopulateViewBagForAnimalForm();
             return View(updatedAnimal);
         }
+
+        private void PopulateViewBagForAnimalForm()
+        {
+            ViewBag.ActivityPatterns = EnumHelper.GetSelectList<ActivityPattern>();
+            ViewBag.Diets = EnumHelper.GetSelectList<DietaryClass>();
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");
+            ViewBag.Enclosures = new SelectList(_context.Enclosures, "Id", "Name");
+            ViewBag.AnimalSizes = EnumHelper.GetSelectList<AnimalSize>();
+            ViewBag.SecurityLevels = EnumHelper.GetSelectList<SecurityLevel>();
+        }
+
+
 
         // Action for deleting an animal (GET)
         public IActionResult Delete(int id)

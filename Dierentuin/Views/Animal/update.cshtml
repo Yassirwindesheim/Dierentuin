@@ -4,57 +4,70 @@
     ViewData["Title"] = "Edit Animal";
 }
 
-<h2>Edit Animal</h2>
+<h1>Edit Animal</h1>
 
-<!-- Begin the form -->
-<form asp-action="Edit" method="post">
+<form asp-action="Update" method="post">
     <div class="form-group">
-        <label for="Name">Name</label>
-        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" />
-        @if (ViewData.ModelState["Name"]?.Errors.Count > 0)
-        {
-            <div class="text-danger">
-                @foreach (var error in ViewData.ModelState["Name"].Errors)
-                {
-                    <p>@error.ErrorMessage</p>
-                }
-            </div>
-        }
+        <label asp-for="Name" class="control-label">Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="ActivityPattern">Activity Pattern</label>
-        <select class="form-control" id="ActivityPattern" name="ActivityPattern">
-            @foreach (var item in ViewBag.ActivityPatterns as IEnumerable<SelectListItem>)
-            {
-                <option value="@item.Value" @(item.Value == Model.ActivityPattern.ToString() ? "selected" : "")>@item.Text</option>
-            }
-        </select>
+        <label asp-for="ActivityPattern" class="control-label">Activity Pattern</label>
+        <select asp-for="ActivityPattern" asp-items="ViewBag.ActivityPatterns" class="form-control"></select>
+        <span asp-validation-for="ActivityPattern" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="Diet">Diet</label>
-        <select class="form-control" id="Diet" name="Diet">
-            @foreach (var item in ViewBag.Diets as IEnumerable<SelectListItem>)
-            {
-                <option value="@item.Value" @(item.Value == Model.Diet.ToString() ? "selected" : "")>@item.Text</option>
-            }
-        </select>
+        <label asp-for="Diet" class="control-label">Diet</label>
+        <select asp-for="Diet" asp-items="ViewBag.Diets" class="form-control"></select>
+        <span asp-validation-for="Diet" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="CategoryId">Category</label>
-        <select class="form-control" id="CategoryId" name="CategoryId">
-            @foreach (var category in ViewBag.Categories as IEnumerable<SelectListItem>)
-            {
-                <option value="@category.Value" @(category.Value == Model.CategoryId.ToString() ? "selected" : "")>@category.Text</option>
-            }
-        </select>
+        <label asp-for="CategoryId" class="control-label">Category</label>
+        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label for="EnclosureId">Enclosure</label>
-        <select class="form-control" id="EnclosureId" name="EnclosureId">
-            @foreach (var enclosure in ViewBag.Enclosures as IEnumerable<SelectListItem>)
-            {
-                <option value="@enclosure.Value" @(enclosure
+        <label asp-for="EnclosureId" class="control-label">Enclosure</label>
+        <select asp-for="EnclosureId" asp-items="ViewBag.Enclosures" class="form-control"></select>
+        <span asp-validation-for="EnclosureId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SecurityRequirement" class="control-label">Security Requirement</label>
+        <input asp-for="SecurityRequirement" class="form-control" />
+        <span asp-validation-for="SecurityRequirement" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SpaceRequirement" class="control-label">Space Requirement</label>
+        <input asp-for="SpaceRequirement" class="form-control" />
+        <span asp-validation-for="SpaceRequirement" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Size" class="control-label">Size</label>
+        <input asp-for="Size" class="form-control" />
+        <span asp-validation-for="Size" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Species" class="control-label">Species</label>
+        <input asp-for="Species" class="form-control" />
+        <span asp-validation-for="Species" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

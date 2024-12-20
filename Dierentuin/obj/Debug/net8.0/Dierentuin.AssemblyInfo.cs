@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Dierentuin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5f4f24bd1e081328cd4b1f41f710b4125d9db39c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+018637f250a4d9cd2d0d9d8243b42d6996ed095c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Dierentuin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Dierentuin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
