@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dierentuin.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20241215140939_InitializeCreate")]
-    partial class InitializeCreate
+    [Migration("20241221145826_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,6 @@ namespace Dierentuin.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SecurityRequirement")
@@ -62,7 +61,6 @@ namespace Dierentuin.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Species")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ZooId")
@@ -78,7 +76,7 @@ namespace Dierentuin.Migrations
 
                     b.HasIndex("ZooId");
 
-                    b.ToTable("Animals");
+                    b.ToTable("Animals", (string)null);
 
                     b.HasData(
                         new
@@ -124,19 +122,18 @@ namespace Dierentuin.Migrations
 
             modelBuilder.Entity("Dierentuin.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -171,11 +168,11 @@ namespace Dierentuin.Migrations
 
             modelBuilder.Entity("Enclosure", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<int>("Climate")
                         .HasColumnType("int");
@@ -240,7 +237,8 @@ namespace Dierentuin.Migrations
 
                     b.HasOne("Dierentuin.Models.Category", "Category")
                         .WithMany("Animals")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Enclosure", "Enclosure")
                         .WithMany("Animals")

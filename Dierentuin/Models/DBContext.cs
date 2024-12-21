@@ -84,11 +84,32 @@ namespace Dierentuin.Models
             );
 
             // Cascade delete configuration between Category and Animal
-            modelBuilder.Entity<Animal>()
-                .HasOne(a => a.Category)  // Each Animal has one Category
-                .WithMany()               // A Category can have many Animals
-                .HasForeignKey(a => a.CategoryId)  // Foreign key on the Animal table
-                .OnDelete(DeleteBehavior.Cascade); // Enable Cascade Delete
+            // Fix foreign key configuration for CategoryId
+            modelBuilder.Entity<Category>(builder =>
+            {
+                builder.ToTable("Categories"); // Make sure this matches your table name in the DB
+
+                // Define the relationship where a Category has many Animals
+                builder
+                    .HasMany(category => category.Animals)
+                    .WithOne(animal => animal.Category)
+                    .HasForeignKey(animal => animal.CategoryId)
+                    .IsRequired(false)  // Set to true if the relationship is required
+                    .OnDelete(DeleteBehavior.Cascade); // Enabling cascade delete if necessary
+            });
+
+            modelBuilder.Entity<Animal>(builder =>
+            {
+                builder.ToTable("Animals"); // Same for the Animals table
+
+                // Define the relationship from the Animal side (optional since we've already defined it from Category)
+                builder
+                    .HasOne(animal => animal.Category)
+                    .WithMany(category => category.Animals)
+                    .HasForeignKey(animal => animal.CategoryId)
+                    .IsRequired(false)  // If CategoryId can be null, use false
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
         }
-    }
+        }
 }

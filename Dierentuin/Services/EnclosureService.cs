@@ -1,5 +1,7 @@
 ﻿using Dierentuin.Enum;
 using Dierentuin.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,134 +9,98 @@ namespace Dierentuin.Services
 {
     public class EnclosureService
     {
-        private readonly List<Enclosure> _enclosures;
-        private readonly List<Animal> _animals;
+        private readonly DBContext _context;
 
-        public EnclosureService()
+        // Constructor to inject DBContext via dependency injection
+        public EnclosureService(DBContext context)
         {
-            _enclosures = new List<Enclosure>();
-            _animals = new List<Animal>();
+            _context = context;
         }
 
         // CRUD Operations
 
         public List<Enclosure> GetAllEnclosures()
         {
-            return _enclosures;
+            return _context.Enclosures.Include(e => e.Animals).ToList(); // Retrieve enclosures from the database including the animals they contain
         }
 
         public Enclosure GetEnclosureById(int id)
         {
-            return _enclosures.FirstOrDefault(e => e.Id == id);
+            var enclosure = _context.Enclosures
+                .Include(e => e.Animals)  // Include related animals
+                .FirstOrDefault(e => e.Id == id); // Retrieve enclosure by ID
+
+            return enclosure;
         }
 
         public Enclosure CreateEnclosure(Enclosure enclosure)
         {
-            enclosure.Id = _enclosures.Max(e => e.Id) + 1; // Assign new Id
-            _enclosures.Add(enclosure);
-            return enclosure;
+            try
+            {
+                _context.Enclosures.Add(enclosure);
+                _context.SaveChanges();
+                Console.WriteLine($"Enclosure {enclosure.Name} created successfully");
+                return enclosure;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error creating enclosure: {ex.Message}");
+                throw;
+            }
         }
 
         public Enclosure UpdateEnclosure(Enclosure updatedEnclosure)
         {
-            var existingEnclosure = _enclosures.FirstOrDefault(e => e.Id == updatedEnclosure.Id);
+            var existingEnclosure = _context.Enclosures.FirstOrDefault(e => e.Id == updatedEnclosure.Id);
             if (existingEnclosure != null)
             {
                 existingEnclosure.Name = updatedEnclosure.Name;
-                existingEnclosure.Size = updatedEnclosure.Size;
                 existingEnclosure.Climate = updatedEnclosure.Climate;
+                existingEnclosure.HabitatType = updatedEnclosure.HabitatType;
                 existingEnclosure.SecurityLevel = updatedEnclosure.SecurityLevel;
+                existingEnclosure.Size = updatedEnclosure.Size;
+                _context.SaveChanges();
             }
             return existingEnclosure;
         }
 
         public bool DeleteEnclosure(int id)
         {
-            var enclosure = _enclosures.FirstOrDefault(e => e.Id == id);
-            if (enclosure != null)
+            var enclosureToDelete = _context.Enclosures.FirstOrDefault(e => e.Id == id);
+            if (enclosureToDelete != null)
             {
-                _enclosures.Remove(enclosure);
+                _context.Enclosures.Remove(enclosureToDelete); // Remove enclosure from the database
+                _context.SaveChanges(); // Save changes to the database
                 return true;
             }
             return false;
         }
 
-        // Assign animal to enclosure
-        public void AssignAnimalToEnclosure(int animalId, int enclosureId)
+        // Additional actions for managing animals in enclosures
+
+        public void AddAnimalToEnclosure(int enclosureId, Animal animal)
         {
-            var animal = _animals.FirstOrDefault(a => a.Id == animalId);
-            var enclosure = _enclosures.FirstOrDefault(e => e.Id == enclosureId);
-            if (animal != null && enclosure != null)
+            var enclosure = _context.Enclosures.FirstOrDefault(e => e.Id == enclosureId);
+            if (enclosure != null)
             {
-                animal.EnclosureId = enclosureId;
-                animal.Enclosure = enclosure;
+                enclosure.Animals.Add(animal);
+                _context.SaveChanges();
+                Console.WriteLine($"Animal {animal.Name} added to {enclosure.Name} enclosure.");
             }
         }
 
-        // Filter animals by enclosure
-        public List<Animal> GetAnimalsByEnclosure(int enclosureId)
+        public void RemoveAnimalFromEnclosure(int enclosureId, int animalId)
         {
-            return _animals.Where(a => a.EnclosureId == enclosureId).ToList();
-        }
-
-        // Actions
-
-        public void Sunrise(Enclosure enclosure)
-        {
-            // Logic for sunrise
-            foreach (var animal in enclosure.Animals)
+            var enclosure = _context.Enclosures.Include(e => e.Animals).FirstOrDefault(e => e.Id == enclosureId);
+            var animal = enclosure?.Animals.FirstOrDefault(a => a.Id == animalId);
+            if (animal != null)
             {
-                if (animal.ActivityPattern == ActivityPattern.Diurnal)
-                {
-                    Console.WriteLine($"{animal.Name} is wakker geworden.");
-                }
-                else
-                {
-                    Console.WriteLine($"{animal.Name} slaapt nog.");
-                }
+                enclosure.Animals.Remove(animal);
+                _context.SaveChanges();
+                Console.WriteLine($"Animal {animal.Name} removed from {enclosure.Name} enclosure.");
             }
         }
 
-        public void Sunset(Enclosure enclosure)
-        {
-            // Logic for sunset
-            foreach (var animal in enclosure.Animals)
-            {
-                if (animal.ActivityPattern == ActivityPattern.Nocturnal)
-                {
-                    Console.WriteLine($"{animal.Name} is wakker geworden.");
-                }
-                else
-                {
-                    Console.WriteLine($"{animal.Name} gaat slapen.");
-                }
-            }
-        }
-
-        public void FeedingTime(Enclosure enclosure)
-        {
-            // Logic for feeding time
-            foreach (var animal in enclosure.Animals)
-            {
-                if (animal.Diet == DietaryClass.Carnivore)
-                {
-                    Console.WriteLine($"{animal.Name} eet vlees.");
-                }
-                else if (animal.Diet == DietaryClass.Herbivore)
-                {
-                    Console.WriteLine($"{animal.Name} eet planten.");
-                }
-                else if (animal.Diet == DietaryClass.Omnivore)
-                {
-                    Console.WriteLine($"{animal.Name} eet zowel vlees als planten.");
-                }
-            }
-        }
-
-        // Check constraints (e.g., space, security, etc.)
-        public void CheckConstraints(Enclosure enclosure)
-        {
-            // Logic to check constraints
-        }
+        // Optional: Additional methods related to the Enclosure can be added here
     }
 }

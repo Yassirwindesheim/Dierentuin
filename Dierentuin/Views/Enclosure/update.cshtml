@@ -1,4 +1,60 @@
-﻿@page
-@model Dierentuin.Views.Enclosure.updateModel
+﻿@model Dierentuin.Models.Enclosure
+
 @{
+    ViewData["Title"] = "Edit Enclosure";
+}
+
+<h1>Edit Enclosure</h1>
+
+<form asp-action="Update" method="post">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Climate" class="control-label">Climate</label>
+        <select asp-for="Climate" asp-items="ViewBag.Climates" class="form-control"></select>
+        <span asp-validation-for="Climate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HabitatType" class="control-label">Habitat Type</label>
+        <select asp-for="HabitatType" asp-items="ViewBag.HabitatTypes" class="form-control"></select>
+        <span asp-validation-for="HabitatType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SecurityLevel" class="control-label">Security Level</label>
+        <select asp-for="SecurityLevel" asp-items="ViewBag.SecurityLevels" class="form-control"></select>
+        <span asp-validation-for="SecurityLevel" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Size" class="control-label">Size (in square meters)</label>
+        <input asp-for="Size" type="number" class="form-control" step="0.01" />
+        <span asp-validation-for="Size" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Animals" class="control-label">Animals in Enclosure</label>
+        <select asp-for="Animals" asp-items="ViewBag.AnimalList" class="form-control" multiple="multiple">
+            @foreach (var animal in ViewBag.AnimalList as List<SelectListItem>)
+            {
+                <option value="@animal.Value">@animal.Text</option>
+            }
+        </select>
+        <span asp-validation-for="Animals" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

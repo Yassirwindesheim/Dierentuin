@@ -77,7 +77,12 @@ namespace Dierentuin.Controllers
         public IActionResult Create(Animal animal)
         {
             if (ModelState.IsValid)
+
             {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
                 try
                 {
                     var createdAnimal = _animalService.CreateAnimal(animal);

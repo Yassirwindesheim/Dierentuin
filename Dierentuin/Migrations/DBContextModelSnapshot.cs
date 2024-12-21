@@ -39,9 +39,6 @@ namespace Dierentuin.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryId1")
-                        .HasColumnType("int");
-
                     b.Property<int>("Diet")
                         .HasColumnType("int");
 
@@ -72,13 +69,11 @@ namespace Dierentuin.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("CategoryId1");
-
                     b.HasIndex("EnclosureId");
 
                     b.HasIndex("ZooId");
 
-                    b.ToTable("Animals");
+                    b.ToTable("Animals", (string)null);
 
                     b.HasData(
                         new
@@ -135,7 +130,7 @@ namespace Dierentuin.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -238,13 +233,9 @@ namespace Dierentuin.Migrations
                         .HasForeignKey("AnimalId");
 
                     b.HasOne("Dierentuin.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Animals")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Dierentuin.Models.Category", null)
-                        .WithMany("Animals")
-                        .HasForeignKey("CategoryId1");
 
                     b.HasOne("Enclosure", "Enclosure")
                         .WithMany("Animals")

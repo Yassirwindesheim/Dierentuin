@@ -1,4 +1,20 @@
-﻿@page
-@model Dierentuin.Views.Enclosure.indexModel
-@{
+﻿@model List<Dierentuin.Models.Enclosure>
+
+<h2>Enclosures</h2>
+
+@if (Model != null && Model.Any())
+{
+    <ul>
+        @foreach (var enclosure in Model)
+        {
+            // Derive capacity as the number of animals
+            var capacity = enclosure.Animals?.Count() ?? 0;
+
+            <li>@enclosure.Name - Climate: @enclosure.Climate - Habitat: @enclosure.HabitatType - Security: @enclosure.SecurityLevel - Animals: @capacity</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No enclosures found.</p>
 }

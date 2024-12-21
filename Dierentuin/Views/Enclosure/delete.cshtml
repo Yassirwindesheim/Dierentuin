@@ -1,4 +1,18 @@
-﻿@page
-@model Dierentuin.Views.Enclosure.deleteModel
-@{
+﻿@model Dierentuin.Models.Enclosure
+
+<h2>Delete Enclosure</h2>
+
+@if (Model != null)
+{
+    <p>Are you sure you want to delete the enclosure <strong>@Model.Name</strong>?</p>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="btn btn-danger">Yes, Delete</button>
+        <a href="@Url.Action("Index", "Enclosure")" class="btn btn-secondary">Cancel</a>
+    </form>
+}
+else
+{
+    <p>Enclosure not found.</p>
 }
