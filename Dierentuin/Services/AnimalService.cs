@@ -21,10 +21,9 @@ namespace Dierentuin.Services
         }
 
         // CRUD Operations
-
-        public List<Animal> GetAllAnimals()
+        public async Task<List<Animal>> GetAllAnimals()
         {
-            return _context.Animals.ToList(); // Retrieve animals from the database
+            return await _context.Animals.ToListAsync();
         }
 
         public Animal GetAnimalById(int id)
@@ -132,6 +131,8 @@ namespace Dierentuin.Services
             {
                 Console.WriteLine($"{animal.Name} eet zowel vlees als planten.");
             }
+
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Dierentuin.Models;
 using Dierentuin.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
 
 namespace Dierentuin.Controllers
@@ -8,11 +9,13 @@ namespace Dierentuin.Controllers
     public class CategoryController : Controller
     {
         private readonly CategoryService _categoryService;
+        private readonly AnimalService _animalService; // Add this
 
         // Constructor to inject CategoryService via dependency injection
-        public CategoryController(CategoryService categoryService)
+        public CategoryController(CategoryService categoryService, AnimalService animalService)
         {
             _categoryService = categoryService;
+            _animalService = animalService;
         }
 
         // Action for listing all categories (GET)
@@ -34,9 +37,11 @@ namespace Dierentuin.Controllers
         }
 
         // Action for creating a new category (GET)
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View(new Category());  // Ensure you pass a new instance of Category to the view
+            var animals = await _animalService.GetAllAnimals();
+            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name");
+            return View();
         }
 
 
@@ -47,11 +52,12 @@ namespace Dierentuin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _categoryService.CreateCategory(category);  // Create the new category in the database asynchronously
-                return RedirectToAction(nameof(Index));  // Redirect to the index page after creation
+                await _categoryService.CreateCategory(category);
+                return RedirectToAction(nameof(Index));
             }
-
-            return View(category);  // Return the view if the model is invalid
+            var animals = await _animalService.GetAllAnimals();
+            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name");
+            return View(category);
         }
 
         // Action for updating an existing category (GET)
@@ -62,8 +68,13 @@ namespace Dierentuin.Controllers
             {
                 return NotFound();  // Return 404 if the category doesn't exist
             }
+
+            var animals = await _animalService.GetAllAnimals(); // Get all animals for the dropdown
+            ViewBag.Animals = new SelectList(animals, "Id", "Name", category.AnimalIds); // Create SelectList for dropdown
+
             return View(category);  // Return the category to the view for editing
         }
+
 
         // Action for updating an existing category (POST)
         [HttpPost]

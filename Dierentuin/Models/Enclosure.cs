@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations; // Zorg ervoor dat deze namespace is toegevoegd
+using System.ComponentModel.DataAnnotations.Schema;
 using Dierentuin.Enum;
 using Dierentuin.Models;
 
@@ -24,6 +25,8 @@ namespace Dierentuin.Models
         // Relationships
         public List<Animal>? Animals { get; set; } = new List<Animal>();
 
+        [NotMapped]
+        public List<int> AnimalIds { get; set; } = new List<int>();
 
         // Constructor to initialize the Animals list
         public Enclosure()

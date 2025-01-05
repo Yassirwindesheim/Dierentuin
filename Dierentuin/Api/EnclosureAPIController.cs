@@ -2,6 +2,7 @@
 using Dierentuin.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
 namespace Dierentuin.API
@@ -9,15 +10,17 @@ namespace Dierentuin.API
     [Route("Api/ApiEnclosure")]
     [ApiController]
     public class EnclosureAPIController : ControllerBase
-        
+
     {
         private readonly EnclosureService _enclosureService;
         private readonly DBContext _context; // Add the DbContext here
+        private readonly ILogger<CategoryAPIController> _logger;  // Add logger
 
-        public EnclosureAPIController(EnclosureService enclosureService, DBContext context)
+        public EnclosureAPIController(EnclosureService enclosureService, DBContext context, ILogger<CategoryAPIController> logger)
         {
             _enclosureService = enclosureService;
             _context = context; // Initialize the context
+            _logger = logger; // Initialize logger
         }
 
         // GET: api/enclosure
@@ -42,27 +45,34 @@ namespace Dierentuin.API
 
         // POST: api/enclosure
         [HttpPost]
-        public ActionResult<Enclosure> CreateEnclosure([FromBody] Enclosure enclosure)
+        public async Task<ActionResult<Enclosure>> CreateEnclosure([FromBody] Enclosure enclosure)
         {
-            var createdEnclosure = _enclosureService.CreateEnclosure(enclosure);
+            _logger.LogInformation("Creating a new enclosure with animals.");
+            var createdEnclosure = await _enclosureService.CreateEnclosure(enclosure);
+            _logger.LogInformation($"Category created with ID {createdEnclosure.Id} and {enclosure.AnimalIds?.Count ?? 0} animals assigned");
             return CreatedAtAction(nameof(GetEnclosure), new { id = createdEnclosure.Id }, createdEnclosure);
         }
 
+
         // PUT: api/enclosure/{id}
         [HttpPut("{id}")]
-        public ActionResult<Enclosure> UpdateEnclosure(int id, [FromBody] Enclosure updatedEnclosure)
+
+        public async Task<ActionResult<Enclosure>> UpdateEnclosure(int id, [FromBody] Enclosure updatedEnclosure)
         {
             if (id != updatedEnclosure.Id)
             {
-                return BadRequest();
+                return BadRequest("ID mismatch");
             }
 
-            var enclosure = _enclosureService.UpdateEnclosure(updatedEnclosure);
+            _logger.LogInformation($"Updating category with ID: {id}");
+            var enclosure = await _enclosureService.UpdateEnclosure(updatedEnclosure);
             if (enclosure == null)
             {
-                return NotFound();
+                _logger.LogWarning($"enclosure with ID {id} not found.");
+                return NotFound($"enclosure with ID {id} not found.");
             }
 
+            _logger.LogInformation($"enclosure updated with ID {id} and {updatedEnclosure.AnimalIds?.Count ?? 0} animals assigned");
             return Ok(enclosure);
         }
 
@@ -70,20 +80,26 @@ namespace Dierentuin.API
         [HttpDelete("{id}")]
         public ActionResult DeleteEnclosure(int id)
         {
-            var success = _enclosureService.DeleteEnclosure(id);
-            if (!success)
+            try
             {
-                return NotFound();
+                var success = _enclosureService.DeleteEnclosure(id);
+                if (!success)
+                {
+                    return NotFound();
+                }
+                return Ok(new { message = $"Enclosure with ID {id} deleted successfully" });
             }
-
-            return NoContent();
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);  // Geeft een duidelijke foutmelding terug aan de client
+            }
         }
 
         // ADD animal to the enclosure (POST action)
         [HttpPost("addanimal/{enclosureId}/{animalId}")]
-        public IActionResult AddAnimalToEnclosure(int enclosureId, int animalId)
+        public async Task<ActionResult<Enclosure>> AddAnimalToEnclosure(int enclosureId, int animalId)
         {
-            var enclosure = _enclosureService.GetEnclosureById(enclosureId);
+            var enclosure = await _enclosureService.GetEnclosureById(enclosureId);
             if (enclosure == null)
             {
                 return NotFound();
@@ -99,24 +115,5 @@ namespace Dierentuin.API
             return Ok($"Animal {animal.Name} added to enclosure {enclosure.Name}");
         }
 
-        // REMOVE animal from the enclosure (DELETE action)
-        [HttpDelete("removeanimal/{enclosureId}/{animalId}")]
-        public IActionResult RemoveAnimalFromEnclosure(int enclosureId, int animalId)
-        {
-            var enclosure = _enclosureService.GetEnclosureById(enclosureId);
-            if (enclosure == null)
-            {
-                return NotFound();
-            }
-
-            var animal = enclosure.Animals.FirstOrDefault(a => a.Id == animalId);
-            if (animal == null)
-            {
-                return NotFound();
-            }
-
-            _enclosureService.RemoveAnimalFromEnclosure(enclosureId, animalId);
-            return Ok($"Animal {animal.Name} removed from enclosure {enclosure.Name}");
-        }
     }
 }

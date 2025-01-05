@@ -8,8 +8,13 @@
 
 <form method="post">
     <div class="form-group">
-        <label for="Name">Category Name</label>
-        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+        <label asp-for="Name">Category Name</label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="AnimalIds">Select Animals</label>
+        <select asp-for="AnimalIds" asp-items="ViewBag.Animals" class="form-control" multiple>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Save Changes</button>
 </form>

@@ -32,9 +32,19 @@ namespace Dierentuin.Services
         public async Task<Category> CreateCategory(Category category)
         {
             _context.Categories.Add(category);
-            await _context.SaveChangesAsync();  // Save the new category to the database asynchronously
+            await _context.SaveChangesAsync();
+
+            if (category.AnimalIds != null && category.AnimalIds.Any())
+            {
+                foreach (var animalId in category.AnimalIds)
+                {
+                    await AssignAnimalToCategory(animalId, category.Id.Value);
+                }
+            }
+
             return category;
         }
+
 
         // Update an existing category
         public async Task<Category> UpdateCategory(Category updatedCategory)
@@ -43,10 +53,29 @@ namespace Dierentuin.Services
             if (existingCategory != null)
             {
                 existingCategory.Name = updatedCategory.Name;
-                await _context.SaveChangesAsync();  // Save the updated category to the database asynchronously
+
+                // Update animal associations
+                if (updatedCategory.AnimalIds != null)
+                {
+                    // Remove all existing animal associations
+                    var existingAnimals = await _context.Animals.Where(a => a.CategoryId == existingCategory.Id).ToListAsync();
+                    foreach (var animal in existingAnimals)
+                    {
+                        animal.CategoryId = null;
+                    }
+
+                    // Add new animal associations
+                    foreach (var animalId in updatedCategory.AnimalIds)
+                    {
+                        await AssignAnimalToCategory(animalId, existingCategory.Id.Value);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
             }
             return existingCategory;
         }
+
 
         // Delete a category
         public async Task<bool> DeleteCategory(int id)

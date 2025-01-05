@@ -24,58 +24,96 @@ namespace Dierentuin.Services
             return _context.Enclosures.Include(e => e.Animals).ToList(); // Retrieve enclosures from the database including the animals they contain
         }
 
-        public Enclosure GetEnclosureById(int id)
+        public async Task<Enclosure> GetEnclosureById(int id)
         {
-            var enclosure = _context.Enclosures
+            var enclosure = await _context.Enclosures
                 .Include(e => e.Animals)  // Include related animals
-                .FirstOrDefault(e => e.Id == id); // Retrieve enclosure by ID
+                .FirstOrDefaultAsync(e => e.Id == id); // Retrieve enclosure by ID
 
             return enclosure;
         }
 
-        public Enclosure CreateEnclosure(Enclosure enclosure)
+
+
+        public async Task<Enclosure> CreateEnclosure(Enclosure enclosure)
         {
-            try
+            _context.Enclosures.Add(enclosure);
+            await _context.SaveChangesAsync();
+
+            if (enclosure.AnimalIds != null && enclosure.AnimalIds.Any())
             {
-                _context.Enclosures.Add(enclosure);
-                _context.SaveChanges();
-                Console.WriteLine($"Enclosure {enclosure.Name} created successfully");
-                return enclosure;
+                foreach (var animalId in enclosure.AnimalIds)
+                {
+                    await AssignAnimalToEnclosure(animalId, enclosure.Id.Value);
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error creating enclosure: {ex.Message}");
-                throw;
-            }
+
+            return enclosure;
         }
 
-        public Enclosure UpdateEnclosure(Enclosure updatedEnclosure)
+        public async Task AssignAnimalToEnclosure(int animalId, int enclosureId)
         {
-            var existingEnclosure = _context.Enclosures.FirstOrDefault(e => e.Id == updatedEnclosure.Id);
-            if (existingEnclosure != null)
+            var animal = await _context.Animals.FirstOrDefaultAsync(a => a.Id == animalId);
+            var enclosure = await _context.Enclosures.FirstOrDefaultAsync(c => c.Id == enclosureId);
+            if (animal != null && enclosure != null)
             {
-                existingEnclosure.Name = updatedEnclosure.Name;
-                existingEnclosure.Climate = updatedEnclosure.Climate;
-                existingEnclosure.HabitatType = updatedEnclosure.HabitatType;
-                existingEnclosure.SecurityLevel = updatedEnclosure.SecurityLevel;
-                existingEnclosure.Size = updatedEnclosure.Size;
-                _context.SaveChanges();
+                animal.EnclosureId = enclosureId;
+                animal.Enclosure = enclosure;
+                await _context.SaveChangesAsync();  // Save the updated animal's category to the database asynchronously
             }
-            return existingEnclosure;
         }
+            public async Task<Enclosure> UpdateEnclosure(Enclosure updatedEnclosure)
+            {
+                var existingEnclosure= await _context.Enclosures.FirstOrDefaultAsync(c => c.Id == updatedEnclosure.Id);
+                if (existingEnclosure != null)
+                {
+                    existingEnclosure.Name = updatedEnclosure.Name;
+
+                    // Update animal associations
+                    if (updatedEnclosure.AnimalIds != null)
+                    {
+                        // Remove all existing animal associations
+                        var existingAnimals = await _context.Animals.Where(a => a.EnclosureId == existingEnclosure.Id).ToListAsync();
+                        foreach (var animal in existingAnimals)
+                        {
+                            animal.EnclosureId = null;
+                        }
+
+                        // Add new animal associations
+                        foreach (var animalId in updatedEnclosure.AnimalIds)
+                        {
+                            await AssignAnimalToEnclosure(animalId, existingEnclosure.Id.Value);
+                        }
+                    }
+
+                    await _context.SaveChangesAsync();
+                }
+                return existingEnclosure;
+            }
 
         public bool DeleteEnclosure(int id)
         {
-            var enclosureToDelete = _context.Enclosures.FirstOrDefault(e => e.Id == id);
-            if (enclosureToDelete != null)
-            {
-                _context.Enclosures.Remove(enclosureToDelete); // Remove enclosure from the database
-                _context.SaveChanges(); // Save changes to the database
-                return true;
-            }
-            return false;
-        }
+            var enclosureToDelete = _context.Enclosures
+                .Include(e => e.Animals)
+                .FirstOrDefault(e => e.Id == id);
 
+            if (enclosureToDelete == null)
+            {
+                return false;
+            }
+
+            // Check if there are any animals in the enclosure
+            if (enclosureToDelete.Animals != null && enclosureToDelete.Animals.Any())
+            {
+                throw new InvalidOperationException(
+                    $"Cannot delete enclosure '{enclosureToDelete.Name}' because it still contains {enclosureToDelete.Animals.Count} animals. " +
+                    "Please relocate all animals before deleting the enclosure.");
+            }
+
+            _context.Enclosures.Remove(enclosureToDelete);
+            _context.SaveChanges();
+            return true;
+        }
         // Additional actions for managing animals in enclosures
 
         public void AddAnimalToEnclosure(int enclosureId, Animal animal)

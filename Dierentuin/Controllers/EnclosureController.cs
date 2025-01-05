@@ -11,12 +11,14 @@ namespace Dierentuin.Controllers
     {
         private readonly EnclosureService _enclosureService;
         private readonly DBContext _context;
+        private readonly AnimalService _animalService; // Add this
 
         // Constructor to inject EnclosureService and DBContext via dependency injection
-        public EnclosureController(EnclosureService enclosureService, DBContext context)
+        public EnclosureController(EnclosureService enclosureService, DBContext context, AnimalService animalService)
         {
             _enclosureService = enclosureService;
             _context = context;
+            _animalService = animalService;
         }
 
         // Action for listing all enclosures
@@ -38,24 +40,31 @@ namespace Dierentuin.Controllers
         }
 
         // Action for creating a new enclosure (GET)
-        public IActionResult Create()
+        // Action for creating a new enclosure (GET)
+        public async Task<IActionResult> Create()
         {
             ViewBag.Climates = EnumHelper.GetSelectList<Climate>();
             ViewBag.HabitatTypes = EnumHelper.GetSelectList<HabitatType>();
             ViewBag.SecurityLevels = EnumHelper.GetSelectList<SecurityLevel>();
+
+            var animals = await _animalService.GetAllAnimals(); // Get all animals
+            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name"); // Populate MultiSelectList
+
             return View();
         }
+
+
 
         // Action for creating a new enclosure (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Enclosure enclosure)
+        public async Task<IActionResult> Create(Enclosure enclosure)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _enclosureService.CreateEnclosure(enclosure);
+                    await _enclosureService.CreateEnclosure(enclosure); // Ensure this method can handle animal assignments
                     return RedirectToAction(nameof(Index)); // Redirect after successful creation
                 }
                 catch (Exception ex)
@@ -63,16 +72,19 @@ namespace Dierentuin.Controllers
                     ModelState.AddModelError("", $"Unable to save changes. Try again. Error: {ex.Message}");
                 }
             }
-            ViewBag.Climates = EnumHelper.GetSelectList<Climate>();
-            ViewBag.HabitatTypes = EnumHelper.GetSelectList<HabitatType>();
-            ViewBag.SecurityLevels = EnumHelper.GetSelectList<SecurityLevel>();
+
+            var animals = await _animalService.GetAllAnimals(); // Get all animals again if model is invalid
+            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name");
+
             return View(enclosure);
         }
 
+
         // Action for editing an existing enclosure (GET)
-        public IActionResult Update(int id)
+        // Action for editing an existing enclosure (GET)
+        public async Task<IActionResult> Update(int id)
         {
-            var enclosure = _enclosureService.GetEnclosureById(id);
+            var enclosure = await _enclosureService.GetEnclosureById(id);
             if (enclosure == null)
             {
                 return NotFound();
@@ -83,30 +95,38 @@ namespace Dierentuin.Controllers
             ViewBag.HabitatTypes = EnumHelper.GetSelectList<HabitatType>();
             ViewBag.SecurityLevels = EnumHelper.GetSelectList<SecurityLevel>();
 
-            // Check if Animals exists and is not null before processing
-            ViewBag.AnimalList = _context.Animals
-                                          .Select(a => new SelectListItem
-                                          {
-                                              Value = a.Id.ToString(),
-                                              Text = a.Name
-                                          })
-                                          .ToList(); // Using the default list directly if no animals available
+            // Get all animals for the dropdown
+            var animals = await _animalService.GetAllAnimals();
+            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name", enclosure.AnimalIds); // Pre-select animals associated with this enclosure
 
             return View(enclosure);
         }
-
         // Action for editing an existing enclosure (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Update(Enclosure updatedEnclosure)
+        public async Task<IActionResult> Update(Enclosure updatedEnclosure)
         {
             if (ModelState.IsValid)
             {
-                _enclosureService.UpdateEnclosure(updatedEnclosure);
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    await _enclosureService.UpdateEnclosure(updatedEnclosure); // Ensure this method is async and returns Task
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", $"Unable to save changes. Try again. Error: {ex.Message}");
+                }
             }
+
+            // Repopulate ViewBag.Animals if model is invalid
+            var animals = await _animalService.GetAllAnimals(); // This should be awaited
+            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name", updatedEnclosure.AnimalIds);
+
             return View(updatedEnclosure);
         }
+
+
 
         // Action for deleting an enclosure (GET)
         public IActionResult Delete(int id)

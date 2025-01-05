@@ -1,4 +1,6 @@
-﻿namespace Dierentuin.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Dierentuin.Models
 {
     public class Category
     {
@@ -7,5 +9,9 @@
 
         // Relationships
         public List<Animal>? Animals { get; set; }   // Optional list of animals in this category
+
+        // List of animal IDs for creating or associating animals with this category
+        [NotMapped]
+        public List<int> AnimalIds { get; set; } = new List<int>();
     }
 }

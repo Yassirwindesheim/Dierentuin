@@ -6,10 +6,20 @@
 
 <h2>Create Category</h2>
 
-<form method="post">
+<form asp-action="Create" method="post">
     <div class="form-group">
-        <label for="Name">Category Name</label>
-        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+        <label asp-for="Name">Category Name</label>
+        <input asp-for="Name" class="form-control" required />
     </div>
+
+    <div class="form-group">
+        <label asp-for="AnimalIds">Animals</label>
+        <!-- MultiSelect dropdown where animals can be selected -->
+        <select asp-for="AnimalIds" asp-items="ViewBag.Animals" class="form-control" multiple="multiple">
+            <option value="">Select animals</option> <!-- Placeholder when nothing is selected -->
+        </select>
+        <span asp-validation-for="AnimalIds" class="text-danger"></span>
+    </div>
+
     <button type="submit" class="btn btn-primary">Create</button>
 </form>

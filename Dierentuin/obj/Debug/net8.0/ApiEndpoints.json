@@ -167,9 +167,29 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "CategoryAPIController",
+    "ContainingType": "Dierentuin.API.CategoryAPIController",
+    "Method": "GetCategories",
+    "RelativePath": "Api/ApiCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Dierentuin.Models.Category, Dierentuin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Dierentuin.API.CategoryAPIController",
     "Method": "CreateCategory",
-    "RelativePath": "api/ApiCategory",
+    "RelativePath": "Api/ApiCategory",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -193,29 +213,30 @@
     ]
   },
   {
-    "ContainingType": "CategoryAPIController",
-    "Method": "GetCategories",
-    "RelativePath": "api/ApiCategory",
-    "HttpMethod": "GET",
+    "ContainingType": "Dierentuin.API.CategoryAPIController",
+    "Method": "AssignAnimalToCategory",
+    "RelativePath": "Api/ApiCategory/{categoryId}/assign/{animalId}",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Dierentuin.Models.Category, Dierentuin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "categoryId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "animalId",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "CategoryAPIController",
+    "ContainingType": "Dierentuin.API.CategoryAPIController",
     "Method": "GetCategory",
-    "RelativePath": "api/ApiCategory/{id}",
+    "RelativePath": "Api/ApiCategory/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -229,6 +250,79 @@
     "ReturnTypes": [
       {
         "Type": "Dierentuin.Models.Category",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Dierentuin.API.CategoryAPIController",
+    "Method": "UpdateCategory",
+    "RelativePath": "Api/ApiCategory/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "updatedCategory",
+        "Type": "Dierentuin.Models.Category",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Dierentuin.Models.Category",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Dierentuin.API.CategoryAPIController",
+    "Method": "DeleteCategory",
+    "RelativePath": "Api/ApiCategory/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Dierentuin.API.CategoryAPIController",
+    "Method": "GetAnimalsByCategory",
+    "RelativePath": "Api/ApiCategory/animals/{categoryId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "categoryId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Dierentuin.Models.Animal, Dierentuin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -376,28 +470,17 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Dierentuin.API.EnclosureAPIController",
-    "Method": "RemoveAnimalFromEnclosure",
-    "RelativePath": "Api/ApiEnclosure/removeanimal/{enclosureId}/{animalId}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+    "ReturnTypes": [
       {
-        "Name": "enclosureId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "animalId",
-        "Type": "System.Int32",
-        "IsRequired": true
+        "Type": "Dierentuin.Models.Enclosure",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
     "ContainingType": "Dierentuin.API.ZooAPIController",
