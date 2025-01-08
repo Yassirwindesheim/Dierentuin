@@ -4,24 +4,53 @@
     ViewData["Title"] = "Animal Details";
 }
 
-<h1>Animal Details</h1>
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="px-6 py-5">
+                <h2 class="text-4xl font-extrabold text-green-800 mb-4">@Model.Name</h2>
+            </div>
+            <div class="px-6 py-5">
+                <div class="mb-4">
+                    <div>
+                        <strong>Animal ID:</strong> @Model.Id
+                    </div>
+                    <div>
+                        <strong>Name:</strong> @Model.Name
+                    </div>
+                    <div>
+                        <strong>Species:</strong> @Model.Species
+                    </div>
+                    <div>
+                        <strong>Diet:</strong> @Model.Diet
+                    </div>
+                    <div>
+                        <strong>Size:</strong> @Model.Size
+                    </div>
+                    <div>
+                        <strong>Category ID:</strong> @Model.CategoryId
+                    </div>
+                </div>
 
-<div class="card">
-    <div class="card-header">
-        <h2>@Model.Name (@Model.Species)</h2>
-    </div>
-    <div class="card-body">
-        <p><strong>Size:</strong> @Model.Size</p>
-        <p><strong>Diet:</strong> @Model.Diet</p>
-        <p><strong>Activity Pattern:</strong> @Model.ActivityPattern</p>
-        <p><strong>Space Requirement:</strong> @Model.SpaceRequirement m²</p>
-        <p><strong>Security Requirement:</strong> @Model.SecurityRequirement</p>
-        <p><strong>Category:</strong> @Model.Category?.Name ?? "Uncategorized"</p>
-        <p><strong>Enclosure:</strong> @Model.Enclosure?.Name ?? "No Enclosure Assigned"</p>
-    </div>
-    <div class="card-footer">
-        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
-        <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
-        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+                <div class="mt-4">
+                    <h3 class="text-xl font-semibold text-green-600 border-b border-gray-200 pb-2">Additional Information</h3>
+                    <!-- Add any additional information for this animal here -->
+                    <!-- For example, more details about its habitat, behavior, etc. -->
+                </div>
+            </div>
+
+            <div class="flex justify-end p-4 bg-gray-50 border-t border-gray-200">
+                <a href="@Url.Action("Index")"
+                   class="inline-flex items-center px=4 py=2 border border-transparent text-sm font-medium rounded-md shadow-sm
+                          text-white bg-green600 hover:bg-green700 focus:outline-none focus:ring focus:ring-green500
+                          focus:ring-offset focus:ring-offset-white transition duration=150 ease-in-out">
+                    Back to List
+                </a>
+            </div>
+        </div>
+
+        <!-- Optional: Add some spacing or decorative elements below -->
+        <div class="mt-8"></div> <!-- This can be adjusted or removed as necessary -->
     </div>
 </div>
+

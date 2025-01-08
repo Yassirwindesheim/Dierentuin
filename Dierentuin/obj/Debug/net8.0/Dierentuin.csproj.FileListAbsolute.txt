@@ -430,3 +430,8 @@ C:\Users\yassi\Dierentuin2\Dierentuin\Dierentuin\obj\Debug\net8.0\scopedcss\proj
 C:\Users\yassi\Dierentuin2\Dierentuin\Dierentuin\obj\Debug\net8.0\Dierentuin.csproj.Up2Date
 C:\Users\yassi\Dierentuin2\Dierentuin\Dierentuin\obj\Debug\net8.0\Dierentuin.genruntimeconfig.cache
 C:\Users\yassi\Dierentuin2\Dierentuin\Dierentuin\obj\Debug\net8.0\ref\Dierentuin.dll
+C:\Users\kenki\source\repos\DierenTuinGoede\Dierentuin\Dierentuin\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Users\kenki\source\repos\DierenTuinGoede\Dierentuin\Dierentuin\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\kenki\source\repos\DierenTuinGoede\Dierentuin\Dierentuin\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\kenki\source\repos\DierenTuinGoede\Dierentuin\Dierentuin\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\kenki\source\repos\DierenTuinGoede\Dierentuin\Dierentuin\obj\Debug\net8.0\Dierentuin.MvcApplicationPartsAssemblyInfo.cs

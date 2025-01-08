@@ -1,70 +1,139 @@
 ﻿@model Dierentuin.Models.Animal
 
 @{
-    ViewData["Title"] = "Edit Animal";
+    ViewData["Title"] = "Create Animal";
 }
 
-<h2>Edit Animal</h2>
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+            <div class="px-4 py-5 sm:p-6">
+                <h2 class="text-3xl font-extrabold text-green-800 mb-6">Create Animal</h2>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="Id" />
+                <form asp-action="Create" method="post">
+                    <div class="space-y-6">
+                        <!-- Animal Name -->
+                        <div>
+                            <label asp-for="Name" class="block text-sm font-medium text-gray-700">Animal Name</label>
+                            <div class="relative mt-1">
+                                <input asp-for="Name"
+                                       class="py-2 px-2 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out"
+                                       placeholder="Enter animal name" required />
+                            </div>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="Name">Name</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+                        <!-- Species -->
+                        <div>
+                            <label asp-for="Species" class="block text-sm font-medium text-gray-700">Species</label>
+                            <div class="relative mt-1">
+                                <input asp-for="Species"
+                                       class="py-2 px-2 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out"
+                                       placeholder="Enter species" required />
+                            </div>
+                        </div>
+
+                        <!-- Size -->
+                        <div>
+                            <label asp-for="Size" class="block text-sm font-medium text-gray-700">Size</label>
+                            <div class="relative mt-1">
+                                <select asp-for="Size" asp-items="Html.GetEnumSelectList<Dierentuin.Enum.AnimalSize>()"
+                                        class="block w-full py-2 px-2 border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md">
+                                    <option value="">Select size</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Diet -->
+                        <div>
+                            <label asp-for="Diet" class="block text-sm font-medium text-gray-700">Diet</label>
+                            <div class="relative mt-1">
+                                <select asp-for="Diet" asp-items="Html.GetEnumSelectList<Dierentuin.Enum.DietaryClass>()"
+                                        class="block w-full py-2 px-2 border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md">
+                                    <option value="">Select diet</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Activity Pattern -->
+                        <div>
+                            <label asp-for="ActivityPattern" class="block text-sm font-medium text-gray-700">Activity Pattern</label>
+                            <div class="relative mt-1">
+                                <select asp-for="ActivityPattern" asp-items="Html.GetEnumSelectList<Dierentuin.Enum.ActivityPattern>()"
+                                        class="block w-full py-2 px-2 border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md">
+                                    <option value="">Select activity pattern</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Space Requirement -->
+                        <div>
+                            <label asp-for="SpaceRequirement" class="block text-sm font-medium text-gray-700">Space Requirement (m²)</label>
+                            <div class="relative mt-1">
+                                <input asp-for="SpaceRequirement"
+                                       class="py-2 px-2 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md"
+                                       type="number" step="0.01" required />
+                            </div>
+                        </div>
+
+                        <!-- Security Requirement -->
+                        <div>
+                            <label asp-for="SecurityRequirement" class="block text-sm font-medium text-gray-700">Security Requirement</label>
+                            <div class="relative mt-1">
+                                <select asp-for="SecurityRequirement" asp-items="Html.GetEnumSelectList<Dierentuin.Enum.SecurityLevel>()"
+                                        class="block w-full py-2 px-2 border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md">
+                                    <option value="">Select security level</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Category -->
+                        <div>
+                            <label asp-for="CategoryId" class="block text-sm font-medium text-gray-700">Category</label>
+                            <div class="relative mt-1">
+                                <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="select2 block w-full py-2 px-2 border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md">
+                                    <option value="">Select category</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Enclosure -->
+                        <div>
+                            <label asp-for="EnclosureId" class="block text-sm font-medium text-gray-700">Enclosure</label>
+                            <div class="relative mt-1">
+                                <select asp-for="EnclosureId" asp-items="ViewBag.Enclosures" class="select2 block w-full py-2 px-2 border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md">
+                                    <option value="">Select enclosure</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex items-center justify-end space-x-4">
+                        <button type="button" onclick="history.back()" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Cancel
+                        </button>
+                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Create Animal
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-
-    <div class="form-group">
-        <label asp-for="Species">Species</label>
-        <input asp-for="Species" class="form-control" />
-        <span asp-validation-for="Species" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="CategoryId">Category</label>
-        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control">
-            <option value="">Select a category</option>
-        </select>
-        <span asp-validation-for="CategoryId" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="EnclosureId">Enclosure</label>
-        <select asp-for="EnclosureId" asp-items="ViewBag.Enclosures" class="form-control">
-            <option value="">Select an enclosure</option>
-        </select>
-        <span asp-validation-for="EnclosureId" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Size">Animal Size</label>
-        <select asp-for="Size" asp-items="ViewBag.AnimalSizes" class="form-control"></select>
-        <span asp-validation-for="Size" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="ActivityPattern">Activity Pattern</label>
-        <select asp-for="ActivityPattern" asp-items="ViewBag.ActivityPatterns" class="form-control"></select>
-        <span asp-validation-for="ActivityPattern" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Diet">Diet</label>
-        <select asp-for="Diet" asp-items="ViewBag.Diets" class="form-control"></select>
-        <span asp-validation-for="Diet" class="text-danger"></span>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="SecurityRequirement">Security Level</label>
-        <select asp-for="SecurityRequirement" asp-items="ViewBag.SecurityLevels" class="form-control"></select>
-        <span asp-validation-for="SecurityRequirement" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-</form>
+</div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <!-- Include Select2 CSS and JS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                theme: 'classic',
+                placeholder: "Select an option",
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
 }

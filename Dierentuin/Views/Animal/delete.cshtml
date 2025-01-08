@@ -1,18 +1,47 @@
 ﻿@model Dierentuin.Models.Animal
 
-<h2>Delete Animal</h2>
-
-@if (Model != null)
-{
-    <p>Are you sure you want to delete the animal <strong>@Model.Name</strong>?</p>
-
-    <form asp-action="Delete" method="post">
-        <input type="hidden" name="id" value="@Model.Id" />
-        <button type="submit" class="btn btn-danger">Yes, Delete</button>
-        <a href="@Url.Action("Index", "Animal")" class="btn btn-secondary">Cancel</a>
-    </form>
+@{
+    ViewData["Title"] = "Delete Animal";
 }
-else
-{
-    <p>Animal not found.</p>
+
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="px-6 py-5">
+                <h2 class="text-3xl font-extrabold text-green-800 mb-6">Delete Animal</h2>
+
+                @if (Model != null)
+                {
+                    <p class="text-lg text-gray-700 mb-4">Are you sure you want to delete the animal <strong>@Model.Name</strong>?</p>
+
+                    <form asp-action="Delete" method="post" class="space-y-6">
+                        <input type="hidden" name="id" value="@Model.Id" />
+
+                        <div class="flex justify-between items-center">
+                            <!-- Delete Button -->
+                            <button type="submit"
+                                    class="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-white transition duration-150 ease-in-out w-full sm:w-auto">
+                                Yes, Delete
+                            </button>
+
+                            <!-- Cancel Button -->
+                            <a href="@Url.Action("Index", "Animal")"
+                               class="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring focus:ring-gray-500 transition duration-150 ease-in-out w-full sm:w-auto ml-4">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                }
+                else
+                {
+                    <p class="text-lg text-red-600">Animal not found.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Include validation scripts -->
+    <partial name="_ValidationScriptsPartial" />
 }

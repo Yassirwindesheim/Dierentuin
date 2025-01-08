@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dierentuin.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20241215140939_InitializeCreate")]
-    partial class InitializeCreate
+    [Migration("20250108140412_Test25")]
+    partial class Test25
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,6 @@ namespace Dierentuin.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SecurityRequirement")
@@ -62,7 +61,6 @@ namespace Dierentuin.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("Species")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ZooId")
@@ -124,14 +122,13 @@ namespace Dierentuin.Migrations
 
             modelBuilder.Entity("Dierentuin.Models.Category", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -156,26 +153,13 @@ namespace Dierentuin.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Dierentuin.Models.Zoo", b =>
+            modelBuilder.Entity("Dierentuin.Models.Enclosure", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Zoos");
-                });
-
-            modelBuilder.Entity("Enclosure", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
 
                     b.Property<int>("Climate")
                         .HasColumnType("int");
@@ -232,6 +216,19 @@ namespace Dierentuin.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Dierentuin.Models.Zoo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Zoos");
+                });
+
             modelBuilder.Entity("Dierentuin.Models.Animal", b =>
                 {
                     b.HasOne("Dierentuin.Models.Animal", null)
@@ -240,9 +237,10 @@ namespace Dierentuin.Migrations
 
                     b.HasOne("Dierentuin.Models.Category", "Category")
                         .WithMany("Animals")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Enclosure", "Enclosure")
+                    b.HasOne("Dierentuin.Models.Enclosure", "Enclosure")
                         .WithMany("Animals")
                         .HasForeignKey("EnclosureId");
 
@@ -255,7 +253,7 @@ namespace Dierentuin.Migrations
                     b.Navigation("Enclosure");
                 });
 
-            modelBuilder.Entity("Enclosure", b =>
+            modelBuilder.Entity("Dierentuin.Models.Enclosure", b =>
                 {
                     b.HasOne("Dierentuin.Models.Zoo", null)
                         .WithMany("Enclosures")
@@ -272,16 +270,16 @@ namespace Dierentuin.Migrations
                     b.Navigation("Animals");
                 });
 
+            modelBuilder.Entity("Dierentuin.Models.Enclosure", b =>
+                {
+                    b.Navigation("Animals");
+                });
+
             modelBuilder.Entity("Dierentuin.Models.Zoo", b =>
                 {
                     b.Navigation("Animals");
 
                     b.Navigation("Enclosures");
-                });
-
-            modelBuilder.Entity("Enclosure", b =>
-                {
-                    b.Navigation("Animals");
                 });
 #pragma warning restore 612, 618
         }

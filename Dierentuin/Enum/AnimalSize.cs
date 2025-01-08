@@ -7,6 +7,6 @@
          Small, 
          Medium, 
          Large, 
-         VeryLar
+         VeryLarge
     }
 }

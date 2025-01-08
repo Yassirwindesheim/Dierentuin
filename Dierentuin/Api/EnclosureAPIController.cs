@@ -1,140 +1,119 @@
-﻿using Dierentuin.Services;
+﻿using Dierentuin.Models;
+using Dierentuin.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
-[Route("api/ApiEnclosure")]
-[ApiController]
-public class EnclosureAPIController : ControllerBase
+namespace Dierentuin.API
 {
-    private readonly EnclosureService _enclosureService;
+    [Route("Api/ApiEnclosure")]
+    [ApiController]
+    public class EnclosureAPIController : ControllerBase
 
-    public EnclosureAPIController(EnclosureService enclosureService)
     {
-        _enclosureService = enclosureService;
-    }
+        private readonly EnclosureService _enclosureService;
+        private readonly DBContext _context; // Add the DbContext here
+        private readonly ILogger<CategoryAPIController> _logger;  // Add logger
 
-    // POST: api/ApiEnclosure
-    [HttpPost]
-    public ActionResult<Enclosure> CreateEnclosure([FromBody] Enclosure enclosure)
-    {
-        var createdEnclosure = _enclosureService.CreateEnclosure(enclosure);
-        return CreatedAtAction(nameof(GetEnclosure), new { id = createdEnclosure.Id }, createdEnclosure);
-    }
-
-    // GET: api/ApiEnclosure
-    [HttpGet]
-    public ActionResult<List<Enclosure>> GetEnclosures()
-    {
-        return Ok(_enclosureService.GetAllEnclosures());
-    }
-
-    // GET: api/ApiEnclosure/{id}
-    [HttpGet("{id}")]
-    public ActionResult<Enclosure> GetEnclosure(int id)
-    {
-        var enclosure = _enclosureService.GetEnclosureById(id);
-        if (enclosure == null)
+        public EnclosureAPIController(EnclosureService enclosureService, DBContext context, ILogger<CategoryAPIController> logger)
         {
-            return NotFound();
-        }
-        return Ok(enclosure);
-    }
-
-    // PUT: api/ApiEnclosure/{id}
-    [HttpPut("{id}")]
-    public ActionResult<Enclosure> UpdateEnclosure(int id, [FromBody] Enclosure updatedEnclosure)
-    {
-        if (id != updatedEnclosure.Id)
-        {
-            return BadRequest("The ID in the URL doesn't match the ID in the body.");
+            _enclosureService = enclosureService;
+            _context = context; // Initialize the context
+            _logger = logger; // Initialize logger
         }
 
-        var enclosure = _enclosureService.UpdateEnclosure(updatedEnclosure);
-        if (enclosure == null)
+        // GET: api/enclosure
+        [HttpGet]
+        public ActionResult<List<Enclosure>> GetEnclosures()
         {
-            return NotFound();
+            var enclosures = _enclosureService.GetAllEnclosures();
+            return Ok(enclosures);
         }
 
-        return Ok(enclosure);
-    }
-
-    // DELETE: api/ApiEnclosure/{id}
-    [HttpDelete("{id}")]
-    public ActionResult DeleteEnclosure(int id)
-    {
-        var success = _enclosureService.DeleteEnclosure(id);
-        if (!success)
+        // GET: api/enclosure/{id}
+        [HttpGet("{id}")]
+        public ActionResult<Enclosure> GetEnclosure(int id)
         {
-            return NotFound();
+            var enclosure = _enclosureService.GetEnclosureById(id);
+            if (enclosure == null)
+            {
+                return NotFound();
+            }
+            return Ok(enclosure);
         }
 
-        return NoContent();
-    }
-
-    // POST: api/ApiEnclosure/{enclosureId}/assignanimal/{animalId}
-    [HttpPost("{enclosureId}/assignanimal/{animalId}")]
-    public IActionResult AssignAnimalToEnclosure(int enclosureId, int animalId)
-    {
-        // Call the service to assign the animal to the enclosure
-        _enclosureService.AssignAnimalToEnclosure(animalId, enclosureId);
-
-        // Return a success message
-        return Ok($"Animal {animalId} has been assigned to Enclosure {enclosureId}.");
-    }
-
-    // Additional actions (e.g., Sunrise, Sunset, FeedingTime, etc.)
-    // Example of Sunrise action
-    [HttpPost("{id}/sunrise")]
-    public IActionResult Sunrise(int id)
-    {
-        var enclosure = _enclosureService.GetEnclosureById(id);
-        if (enclosure == null)
+        // POST: api/enclosure
+        [HttpPost]
+        public async Task<ActionResult<Enclosure>> CreateEnclosure([FromBody] Enclosure enclosure)
         {
-            return NotFound();
+            _logger.LogInformation("Creating a new enclosure with animals.");
+            var createdEnclosure = await _enclosureService.CreateEnclosure(enclosure);
+            _logger.LogInformation($"Category created with ID {createdEnclosure.Id} and {enclosure.AnimalIds?.Count ?? 0} animals assigned");
+            return CreatedAtAction(nameof(GetEnclosure), new { id = createdEnclosure.Id }, createdEnclosure);
         }
 
-        _enclosureService.Sunrise(enclosure);
-        return Ok("Sunrise action executed.");
-    }
 
-    // Example of Sunset action
-    [HttpPost("{id}/sunset")]
-    public IActionResult Sunset(int id)
-    {
-        var enclosure = _enclosureService.GetEnclosureById(id);
-        if (enclosure == null)
+        // PUT: api/enclosure/{id}
+        [HttpPut("{id}")]
+
+        public async Task<ActionResult<Enclosure>> UpdateEnclosure(int id, [FromBody] Enclosure updatedEnclosure)
         {
-            return NotFound();
+            if (id != updatedEnclosure.Id)
+            {
+                return BadRequest("ID mismatch");
+            }
+
+            _logger.LogInformation($"Updating category with ID: {id}");
+            var enclosure = await _enclosureService.UpdateEnclosure(updatedEnclosure);
+            if (enclosure == null)
+            {
+                _logger.LogWarning($"enclosure with ID {id} not found.");
+                return NotFound($"enclosure with ID {id} not found.");
+            }
+
+            _logger.LogInformation($"enclosure updated with ID {id} and {updatedEnclosure.AnimalIds?.Count ?? 0} animals assigned");
+            return Ok(enclosure);
         }
 
-        _enclosureService.Sunset(enclosure);
-        return Ok("Sunset action executed.");
-    }
-
-    // Example of FeedingTime action
-    [HttpPost("{id}/feedingtime")]
-    public IActionResult FeedingTime(int id)
-    {
-        var enclosure = _enclosureService.GetEnclosureById(id);
-        if (enclosure == null)
+        // DELETE: api/enclosure/{id}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteEnclosure(int id)
         {
-            return NotFound();
+            try
+            {
+                var success = _enclosureService.DeleteEnclosure(id);
+                if (!success)
+                {
+                    return NotFound();
+                }
+                return Ok(new { message = $"Enclosure with ID {id} deleted successfully" });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);  // Geeft een duidelijke foutmelding terug aan de client
+            }
         }
 
-        _enclosureService.FeedingTime(enclosure);
-        return Ok("Feeding time action executed.");
-    }
-
-    // Example of CheckConstraints action
-    [HttpPost("{id}/checkconstraints")]
-    public IActionResult CheckConstraints(int id)
-    {
-        var enclosure = _enclosureService.GetEnclosureById(id);
-        if (enclosure == null)
+        // ADD animal to the enclosure (POST action)
+        [HttpPost("addanimal/{enclosureId}/{animalId}")]
+        public async Task<ActionResult<Enclosure>> AddAnimalToEnclosure(int enclosureId, int animalId)
         {
-            return NotFound();
+            var enclosure = await _enclosureService.GetEnclosureById(enclosureId);
+            if (enclosure == null)
+            {
+                return NotFound();
+            }
+
+            var animal = _context.Animals.FirstOrDefault(a => a.Id == animalId);
+            if (animal == null)
+            {
+                return NotFound();
+            }
+
+            _enclosureService.AddAnimalToEnclosure(enclosureId, animal);
+            return Ok($"Animal {animal.Name} added to enclosure {enclosure.Name}");
         }
 
-        _enclosureService.CheckConstraints(enclosure);
-        return Ok("Constraints checked.");
     }
 }

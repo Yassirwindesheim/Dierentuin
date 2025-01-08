@@ -1,4 +1,79 @@
-﻿@page
-@model Dierentuin.Views.Enclosure.detailsModel
+﻿@model Dierentuin.Models.Enclosure
+
 @{
+    ViewData["Title"] = "Enclosure Details";
 }
+
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="px-6 py-5">
+                <h2 class="text-4xl font-extrabold text-green-800 mb-4 border-b border-gray-200 pb-2">@Model.Name</h2>
+
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">Enclosure ID:</span>
+                        <span class="text-lg font-bold text-green-600">@Model.Id</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">Climate:</span>
+                        <span class="text-lg font-bold text-green-600">@Model.Climate</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">Habitat Type:</span>
+                        <span class="text-lg font-bold text-green-600">@Model.HabitatType</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-lg font-medium text-gray-700">Security Level:</span>
+                        <span class="text-lg font-bold text-green-600">@Model.SecurityLevel</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <h3 class="text-xl font-semibold text-green-600 border-b border-gray-200 pb-2">Animals in this Enclosure</h3>
+                    @if (Model.Animals != null && Model.Animals.Any())
+                    {
+                        <table class="min-w-full divide-y divide-gray-200 mt-2">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Diet</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach (var animal in Model.Animals)
+                                {
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">@animal.Name</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">@animal.Species</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">@animal.Diet</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">@animal.Size</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="mt-2 text-sm text-gray-500">No animals are currently assigned to this enclosure.</p>
+                    }
+                </div>
+            </div>
+
+            <div class="flex justify-end p-4 bg-gray-50 border-t border-gray-200">
+                <a href="@Url.Action("Index")"
+                   class="inline-flex items-center px=4 py=2 border border-transparent text-sm font-medium rounded-md shadow-sm
+                          text-white bg-green600 hover:bg-green700 focus:outline-none focus:ring focus:ring-green500
+                          focus:ring-offset focus:ring-offset-white transition duration=150 ease-in-out">
+                    Back to List
+                </a>
+            </div>
+        </div>
+
+        <!-- Optional: Add some spacing or decorative elements below -->
+        <div class="mt8"></div> <!-- This can be adjusted or removed as necessary -->
+    </div>
+</div>
+

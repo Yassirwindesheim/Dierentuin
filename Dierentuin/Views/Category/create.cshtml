@@ -1,15 +1,105 @@
 ﻿@model Dierentuin.Models.Category
 
 @{
-    ViewData["Title"] = "Create Category";
+    ViewData["Title"] = "Create New Category";
 }
 
-<h2>Create Category</h2>
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+            <div class="px-4 py-5 sm:p-6">
+                <h2 class="text-3xl font-extrabold text-green-800 mb-6">Create New Category</h2>
 
-<form method="post">
-    <div class="form-group">
-        <label for="Name">Category Name</label>
-        <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+                <form asp-action="Create" method="post">
+                    <div class="space-y-6">
+                        <div>
+                            <label asp-for="Name" class="block text-sm font-medium text-gray-700">Category Name</label>
+                            <div class="relative mt-1">
+                                <input asp-for="Name"
+                                       class="py-2 px-2 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out
+                                              @(ViewData.ModelState.IsValid ? "" : "border-red-500 ring-1 ring-red-500")"
+                                       placeholder="Enter category name"
+                                       required
+                                       minlength="2"
+                                       maxlength="50"
+                                       pattern="^[a-zA-Z0-9\s]+$"
+                                       title="Category name must be 2-50 characters long and contain only letters, numbers, and spaces" />
+
+                            </div>
+
+                            <!-- Validation Message -->
+                            <div class="mt-1">
+                                <span asp-validation-for="Name" class="text-sm text-red-600"></span>
+                            </div>
+
+                            <!-- Character Counter and Validation Hints -->
+                            <div class="mt-1 flex justify-between text-xs text-gray-500">
+                                <span id="nameHint" class="hidden text-green-600">
+                                    Valid category name
+                                </span>
+                                <span id="nameCharCount" class="ml-auto">0 / 50</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label asp-for="AnimalIds" class="block text-sm font-medium text-gray-700">Animals</label>
+                            <div class="mt-1">
+                                <select asp-for="AnimalIds" asp-items="ViewBag.Animals" class="select2 shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md" multiple="multiple">
+                                    <option value="">Select animals</option>
+                                </select>
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">Hold Ctrl (or Cmd) to select multiple animals.</p>
+                            <span asp-validation-for="AnimalIds" class="mt-2 text-sm text-red-600"></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex items-center justify-end space-x-4">
+                        <button type="button" onclick="history.back()" class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Cancel
+                        </button>
+                        <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Create Category
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                theme: 'classic',
+                placeholder: "Select animals",
+                allowClear: true,
+                width: '100%'
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const nameInput = document.querySelector('input[name="Name"]');
+            const nameHint = document.getElementById('nameHint');
+            const nameCharCount = document.getElementById('nameCharCount');
+
+            nameInput.addEventListener('input', function () {
+                const value = this.value.trim();
+                const isValid = value.length >= 2 && value.length <= 50 && /^[a-zA-Z0-9\s]+$/.test(value);
+
+                nameCharCount.textContent = `${value.length} / 50`;
+
+                if (isValid) {
+                    nameHint.classList.remove('hidden');
+                    this.classList.remove('border-red-500', 'ring-red-500');
+                } else {
+                    nameHint.classList.add('hidden');
+                    this.classList.add('border-red-500', 'ring-red-500');
+                }
+            });
+        });
+    </script>
+}

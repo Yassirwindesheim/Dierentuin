@@ -4,70 +4,114 @@
     ViewData["Title"] = "Edit Animal";
 }
 
-<h1>Edit Animal</h1>
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="px-6 py-5">
+                <h2 class="text-3xl font-extrabold text-green-800 mb-6">Edit Animal</h2>
+                <form asp-action="Update" method="post">
+                    <div class="space-y-6">
 
-<form asp-action="Update" method="post">
-    <div class="form-group">
-        <label asp-for="Name" class="control-label">Name</label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
+                        <div>
+                            <label asp-for="Name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <input asp-for="Name"
+                                   class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="ActivityPattern" class="control-label">Activity Pattern</label>
-        <select asp-for="ActivityPattern" asp-items="ViewBag.ActivityPatterns" class="form-control"></select>
-        <span asp-validation-for="ActivityPattern" class="text-danger"></span>
-    </div>
+                        <div>
+                            <label asp-for="ActivityPattern" class="block text-sm font-medium text-gray-700">Activity Pattern</label>
+                            <select asp-for="ActivityPattern" asp-items="ViewBag.ActivityPatterns"
+                                    class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out">
+                                <option value="">Select an activity pattern</option>
+                            </select>
+                            <span asp-validation-for="ActivityPattern" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="Diet" class="control-label">Diet</label>
-        <select asp-for="Diet" asp-items="ViewBag.Diets" class="form-control"></select>
-        <span asp-validation-for="Diet" class="text-danger"></span>
-    </div>
+                        <div>
+                            <label asp-for="Diet" class="block text-sm font-medium text-gray-700">Diet</label>
+                            <select asp-for="Diet" asp-items="ViewBag.Diets"
+                                    class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out">
+                                <option value="">Select a diet</option>
+                            </select>
+                            <span asp-validation-for="Diet" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="CategoryId" class="control-label">Category</label>
-        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
-        <span asp-validation-for="CategoryId" class="text-danger"></span>
-    </div>
+                        <div>
+                            <label asp-for="CategoryId" class="block text-sm font-medium text-gray-700">Category</label>
+                            <select asp-for="CategoryId" asp-items="ViewBag.Categories"
+                                    class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out">
+                                <option value="">Select a category</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="EnclosureId" class="control-label">Enclosure</label>
-        <select asp-for="EnclosureId" asp-items="ViewBag.Enclosures" class="form-control"></select>
-        <span asp-validation-for="EnclosureId" class="text-danger"></span>
-    </div>
+                        <div>
+                            <label asp-for="EnclosureId" class="block text-sm font-medium text-gray-700">Enclosure</label>
+                            <select asp-for="EnclosureId" asp-items="ViewBag.Enclosures"
+                                    class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out">
+                                <option value="">Select an enclosure</option>
+                            </select>
+                            <span asp-validation-for="EnclosureId" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="SecurityRequirement" class="control-label">Security Requirement</label>
-        <input asp-for="SecurityRequirement" class="form-control" />
-        <span asp-validation-for="SecurityRequirement" class="text-danger"></span>
-    </div>
+                        <div>
+                            <label asp-for="SecurityRequirement" class="block text-sm font-medium text-gray-700">Security Level</label>
+                            <select asp-for="SecurityRequirement" asp-items="ViewBag.SecurityLevels"
+                                    class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out">
+                                <option value="">Select a security level</option>
+                            </select>
+                            <span asp-validation-for="SecurityRequirement" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="SpaceRequirement" class="control-label">Space Requirement</label>
-        <input asp-for="SpaceRequirement" class="form-control" />
-        <span asp-validation-for="SpaceRequirement" class="text-danger"></span>
-    </div>
+                        <div>
+                            <label asp-for="SpaceRequirement" class="block text-sm font-medium text-gray-700">Space Requirement</label>
+                            <input asp-for="SpaceRequirement"
+                                   class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out" />
+                            <span asp-validation-for="SpaceRequirement" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="Size" class="control-label">Size</label>
-        <input asp-for="Size" class="form-control" />
-        <span asp-validation-for="Size" class="text-danger"></span>
-    </div>
+                        <div>
+                            <label asp-for="Size" class="block text-sm font-medium text-gray-700">Animal Size</label>
+                            <select asp-for="Size" asp-items="ViewBag.AnimalSizes"
+                                    class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out">
+                                <option value="">Select size</option>
+                            </select>
+                            <span asp-validation-for="Size" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <label asp-for="Species" class="control-label">Species</label>
-        <input asp-for="Species" class="form-control" />
-        <span asp-validation-for="Species" class="text-danger"></span>
-    </div>
+                        <div>
+                            <label asp-for="Species" class="block text-sm font-medium text-gray-700">Species</label>
+                            <input asp-for="Species"
+                                   class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out" />
+                            <span asp-validation-for="Species" class="text-danger"></span>
+                        </div>
 
-    <div class="form-group">
-        <input type="hidden" asp-for="Id" />
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                        <!-- Hidden ID Field -->
+                        <input type="hidden" asp-for="@Model.Id" />
+
+                        <!-- Action Buttons -->
+                        <div class="flex justify-end mt-6 space-x-4">
+                            <!-- Save Button -->
+                            <button type="submit"
+                                    class="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-white transition duration-150 ease-in-out w-full sm:w-auto">
+                                Save Changes
+                            </button>
+
+                            <!-- Cancel Button -->
+                            <a href="@Url.Action("Index")"
+                               class="inline-flex items-center px-6 py-3 border border-transparent text-lg font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring focus:ring-gray-500 transition duration-150 ease-in-out w-full sm:w-auto">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</form>
+</div>
 
 @section Scripts {
+    <!-- Include validation scripts -->
     <partial name="_ValidationScriptsPartial" />
 }

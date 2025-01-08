@@ -85,10 +85,10 @@ namespace Dierentuin.Models
 
             // Cascade delete configuration between Category and Animal
             modelBuilder.Entity<Animal>()
-                .HasOne(a => a.Category)  // Each Animal has one Category
-                .WithMany()               // A Category can have many Animals
-                .HasForeignKey(a => a.CategoryId)  // Foreign key on the Animal table
-                .OnDelete(DeleteBehavior.Cascade); // Enable Cascade Delete
+            .HasOne(a => a.Category)
+            .WithMany(c => c.Animals)
+            .HasForeignKey(a => a.CategoryId)
+            .OnDelete(DeleteBehavior.Cascade); // Enable Cascade Delete
         }
     }
 }

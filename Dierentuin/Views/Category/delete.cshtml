@@ -4,11 +4,24 @@
     ViewData["Title"] = "Delete Category";
 }
 
-<h2>Delete Category</h2>
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md mx-auto">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden p-6">
+            <h2 class="text-xl font-bold text-red-600 mb-4">Delete Category</h2>
 
-<h3>Are you sure you want to delete the category "@Model.Name"?</h3>
+            <h3 class="text-lg font-medium text-gray-800 mb-4">Are you sure you want to delete the category "<span class="font-semibold">@Model.Name</span>"?</h3>
 
-<form method="post">
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
-</form>
+            <form method="post">
+                <div class="flex justify-between mt-6">
+                    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-offset focus:ring-offset-white transition duration-150 ease-in-out">
+                        Delete
+                    </button>
+                    <a href="@Url.Action("Index")" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring focus:ring-gray-500 transition duration-150 ease-in-out">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
