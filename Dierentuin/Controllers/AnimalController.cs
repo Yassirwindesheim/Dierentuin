@@ -11,22 +11,20 @@ namespace Dierentuin.Controllers
     {
         private readonly AnimalService _animalService;
         private readonly DBContext _context;
-        private readonly ILogger<AnimalController> _logger;
+
         // Constructor to inject AnimalService and DBContext via dependency injection
-        public AnimalController(AnimalService animalService, DBContext context, ILogger<AnimalController> logger)
+        public AnimalController(AnimalService animalService, DBContext context)
         {
             _animalService = animalService;
             _context = context;
-            _logger = logger;
         }
 
         // Action for listing all animals
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var animals = await _animalService.GetAllAnimals();
-            return View(animals);
+            var animals = _animalService.GetAllAnimals();  // Retrieve all animals from service
+            return View(animals);  // Pass the list of animals to the view
         }
-
 
         // Action for viewing details of a specific animal
         public IActionResult Details(int id)
@@ -76,17 +74,15 @@ namespace Dierentuin.Controllers
 
         [HttpPost]
         [IgnoreAntiforgeryToken]
-    
         public IActionResult Create(Animal animal)
         {
-            _logger.LogInformation("Animal data received: Name={Name}, Species={Species}, CategoryId={CategoryId}, EnclosureId={EnclosureId}, Size={Size}, ActivityPattern={ActivityPattern}, Diet={Diet}, SecurityRequirement={SecurityRequirement}",
-       animal.Name, animal.Species, animal.CategoryId, animal.EnclosureId, animal.Size, animal.ActivityPattern, animal.Diet, animal.SecurityRequirement);
             if (ModelState.IsValid)
             {
                 try
                 {
                     var createdAnimal = _animalService.CreateAnimal(animal);
-                    return RedirectToAction(nameof(Index));
+                    // Return the created animal as a JSON response
+                    return CreatedAtAction(nameof(Details), new { id = createdAnimal.Id }, createdAnimal);
                 }
                 catch (Exception ex)
                 {
@@ -96,14 +92,14 @@ namespace Dierentuin.Controllers
             }
             else
             {
-                // Log the specific validation errors
+                // Log validation errors
                 foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
                 {
                     Console.WriteLine(error.ErrorMessage);
                 }
             }
 
-            // Repopulate ViewBag items
+            // Repopulate ViewBag items for the dropdowns
             ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", animal.CategoryId);
             ViewBag.Enclosures = new SelectList(_context.Enclosures, "Id", "Name", animal.EnclosureId);
             ViewBag.AnimalSizes = EnumHelper.GetSelectList<AnimalSize>();
@@ -196,9 +192,10 @@ namespace Dierentuin.Controllers
                 return NotFound();
             }
             _animalService.Sunrise(animal);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id });
         }
 
+        // Action for Sunset (for an individual animal)
         public IActionResult Sunset(int id)
         {
             var animal = _animalService.GetAnimalById(id);
@@ -207,7 +204,7 @@ namespace Dierentuin.Controllers
                 return NotFound();
             }
             _animalService.Sunset(animal);
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id });
         }
 
         // Action for FeedingTime (for an individual animal)

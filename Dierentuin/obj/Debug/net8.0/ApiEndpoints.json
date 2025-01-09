@@ -484,6 +484,26 @@
   },
   {
     "ContainingType": "Dierentuin.API.ZooAPIController",
+    "Method": "GetAllZoos",
+    "RelativePath": "Api/ZooApi/all",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[Dierentuin.Models.Zoo, Dierentuin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Dierentuin.API.ZooAPIController",
     "Method": "AutoAssign",
     "RelativePath": "Api/ZooApi/auto-assign",
     "HttpMethod": "POST",
@@ -491,8 +511,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "zoo",
-        "Type": "Dierentuin.Models.Zoo",
+        "Name": "animalId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -502,6 +522,22 @@
     "ContainingType": "Dierentuin.API.ZooAPIController",
     "Method": "CheckConstraints",
     "RelativePath": "Api/ZooApi/check-constraints",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "animalId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Dierentuin.API.ZooAPIController",
+    "Method": "CreateZoo",
+    "RelativePath": "Api/ZooApi/create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -517,14 +553,14 @@
   {
     "ContainingType": "Dierentuin.API.ZooAPIController",
     "Method": "FeedingTime",
-    "RelativePath": "Api/ZooApi/feeding-time",
+    "RelativePath": "Api/ZooApi/feeding-time/{zooId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "zoo",
-        "Type": "Dierentuin.Models.Zoo",
+        "Name": "zooId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -533,14 +569,19 @@
   {
     "ContainingType": "Dierentuin.API.ZooAPIController",
     "Method": "Sunrise",
-    "RelativePath": "Api/ZooApi/sunrise",
+    "RelativePath": "Api/ZooApi/sunrise/{zooId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "zoo",
-        "Type": "Dierentuin.Models.Zoo",
+        "Name": "zooId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "Dierentuin.API.ZooAPIController\u002BAnimalIdsRequest",
         "IsRequired": true
       }
     ],
@@ -549,14 +590,14 @@
   {
     "ContainingType": "Dierentuin.API.ZooAPIController",
     "Method": "Sunset",
-    "RelativePath": "Api/ZooApi/sunset",
+    "RelativePath": "Api/ZooApi/sunset/{zooId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "zoo",
-        "Type": "Dierentuin.Models.Zoo",
+        "Name": "zooId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

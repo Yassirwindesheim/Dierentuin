@@ -9,9 +9,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Register services with Dependency Injection container
 builder.Services.AddScoped<ZooService>();
+builder.Services.AddScoped<Zoo>(provider => new Zoo
+{
+    Animals = new List<Animal>(),
+    Enclosures = new List<Enclosure>()
+});
 builder.Services.AddScoped<AnimalService>();
 builder.Services.AddScoped<EnclosureService>();
 builder.Services.AddScoped<CategoryService>();
+
 
 // Add controllers and configure JSON options to handle enum values and circular references
 builder.Services.AddControllersWithViews()

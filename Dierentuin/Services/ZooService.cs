@@ -1,5 +1,6 @@
 ﻿using Dierentuin.Enum;
 using Dierentuin.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,58 +10,160 @@ namespace Dierentuin.Services
     public class ZooService
     {
         // Method for Sunrise action
-        public void Sunrise(Zoo zoo)
+        
+        private readonly DBContext _context;
+
+
+        public ZooService(DBContext context)
         {
+            _context = context;
+        }
+
+
+        public async Task<List<Zoo>> GetZoosAsync()
+        {
+            // Fetch zoos from the database asynchronously
+            return await _context.Zoos.Include(z => z.Animals).ToListAsync();
+        }
+
+
+        // Get all Zoos
+        public List<Zoo> GetAllZoos()
+        {
+            return _context.Zoos.Include(z => z.Animals).ToList();
+        }
+
+        // Get a Zoo by ID
+
+        public Zoo GetZooById(int id)
+        {
+            // First get the zoo with its AnimalIds
+            var zoo = _context.Zoos
+                .Include(z => z.Animals) // Include the Animals navigation property
+                .FirstOrDefault(z => z.Id == id);
+
+            if (zoo != null && zoo.AnimalIds != null && zoo.AnimalIds.Any())
+            {
+                // If the Animals collection is empty but we have AnimalIds, load the animals
+                if ((zoo.Animals == null || !zoo.Animals.Any()) && zoo.AnimalIds.Any())
+                {
+                    // Load the actual animals based on the AnimalIds
+                    var animals = _context.Animals
+                        .Where(a => zoo.AnimalIds.Contains(a.Id))
+                        .ToList();
+
+                    zoo.Animals = animals;
+                }
+            }
+
+            return zoo;
+        }
+
+        public List<string> Sunrise(Zoo zoo)
+        {
+            var result = new List<string>();
+
+            // Make sure we have the animals loaded
+            if (zoo.Animals == null || !zoo.Animals.Any())
+            {
+                // Load animals if they're not already loaded
+                var animals = _context.Animals
+                    .Where(a => zoo.AnimalIds.Contains(a.Id))
+                    .ToList();
+                zoo.Animals = animals;
+            }
+
             foreach (var animal in zoo.Animals)
             {
                 if (animal.ActivityPattern == ActivityPattern.Diurnal)
                 {
-                    Console.WriteLine($"{animal.Name} is wakker geworden.");
+                    result.Add($"{animal.Name} is wakker geworden.");
                 }
                 else
                 {
-                    Console.WriteLine($"{animal.Name} slaapt nog.");
+                    result.Add($"{animal.Name} slaapt nog.");
                 }
             }
+
+            return result;
         }
 
-        // Method for Sunset action
-        public void Sunset(Zoo zoo)
+        public List<string> Sunset(Zoo zoo)
         {
+            var result = new List<string>();
+
+            // Make sure we have the animals loaded
+            if (zoo.Animals == null || !zoo.Animals.Any())
+            {
+                // Load animals if they're not already loaded
+                var animals = _context.Animals
+                    .Where(a => zoo.AnimalIds.Contains(a.Id))
+                    .ToList();
+                zoo.Animals = animals;
+            }
+
             foreach (var animal in zoo.Animals)
             {
                 if (animal.ActivityPattern == ActivityPattern.Nocturnal)
                 {
-                    Console.WriteLine($"{animal.Name} is wakker geworden.");
+                    result.Add($"{animal.Name} is wakker geworden.");
                 }
                 else if (animal.ActivityPattern == ActivityPattern.Diurnal)
                 {
-                    Console.WriteLine($"{animal.Name} gaat slapen.");
+                    result.Add($"{animal.Name} gaat slapen.");
                 }
             }
+
+            return result;
+        }
+        public async Task<Zoo> CreateZoo(Zoo zoo)
+        {
+            _context.Zoos.Add(zoo);
+            await _context.SaveChangesAsync();
+
+            if (zoo.AnimalIds != null && zoo.AnimalIds.Any())
+            {
+                foreach (var animalId in zoo.AnimalIds)
+                {
+                    var animal = await _context.Animals.FindAsync(animalId);
+                    if (animal != null)
+                    {
+                        zoo.Animals.Add(animal);
+                    }
+                }
+                await _context.SaveChangesAsync();
+            }
+
+            return zoo;
         }
 
+
+        
+
         // Method for FeedingTime action
-        public void FeedingTime(Zoo zoo)
+        public List<string> FeedingTime(Zoo zoo)
         {
+            var feedingMessages = new List<string>();
+
             foreach (var animal in zoo.Animals)
             {
-                // Logic to handle feeding time, depending on dietary needs
                 if (animal.Diet == DietaryClass.Carnivore)
                 {
-                    Console.WriteLine($"{animal.Name} eet vlees.");
+                    feedingMessages.Add($"{animal.Name} eet vlees.");
                 }
                 else if (animal.Diet == DietaryClass.Herbivore)
                 {
-                    Console.WriteLine($"{animal.Name} eet planten.");
+                    feedingMessages.Add($"{animal.Name} eet planten.");
                 }
                 else if (animal.Diet == DietaryClass.Omnivore)
                 {
-                    Console.WriteLine($"{animal.Name} eet zowel vlees als planten.");
+                    feedingMessages.Add($"{animal.Name} eet zowel vlees als planten.");
                 }
-                // Add more logic as needed for other dietary classes
             }
+
+            return feedingMessages;
         }
+    
 
         // Method for AutoAssign action (assign animals to enclosures)
         public void AutoAssign(Zoo zoo)
@@ -78,7 +181,6 @@ namespace Dierentuin.Services
                 }
                 else
                 {
-                    // Create new enclosures if needed (this logic can be expanded)
                     var newEnclosure = new Enclosure
                     {
                         Name = "Nieuw Verblijf",

@@ -17,7 +17,6 @@ namespace Dierentuin.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // This can be left empty or used only when not configuring via dependency injection
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Dierentuin5;Trusted_Connection=True;MultipleActiveResultSets=true");
@@ -89,6 +88,9 @@ namespace Dierentuin.Models
             .WithMany(c => c.Animals)
             .HasForeignKey(a => a.CategoryId)
             .OnDelete(DeleteBehavior.Cascade); // Enable Cascade Delete
+
+
         }
+
     }
 }

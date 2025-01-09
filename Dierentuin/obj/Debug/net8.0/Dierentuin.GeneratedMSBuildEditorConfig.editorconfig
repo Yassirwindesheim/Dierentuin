@@ -102,8 +102,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vXEF1dG9Bc3NpZ24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Zoo/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vXGNyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Zoo/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Zoo/details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vXGRldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Zoo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Zoo/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vXHVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/_ViewImports.cshtml]
