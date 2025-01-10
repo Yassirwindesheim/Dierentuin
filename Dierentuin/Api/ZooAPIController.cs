@@ -168,6 +168,7 @@ namespace Dierentuin.API
 
 
 
+
         // CheckConstraints action for a specific animal (check if constraints are met)
         [HttpPost("check-constraints")]
         public IActionResult CheckConstraints([FromBody] int animalId)
