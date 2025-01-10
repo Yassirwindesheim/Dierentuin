@@ -23,8 +23,10 @@ namespace Dierentuin.Services
         // CRUD Operations
         public async Task<List<Animal>> GetAllAnimals()
         {
-            return await _context.Animals.ToListAsync();
+            var animals = await _context.Animals.ToListAsync();
+            return animals;
         }
+
 
         public Animal GetAnimalById(int id)
         {

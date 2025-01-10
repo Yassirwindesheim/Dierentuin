@@ -20,9 +20,9 @@ namespace Dierentuin.Controllers
         }
 
         // Action for listing all animals
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var animals = _animalService.GetAllAnimals();  // Retrieve all animals from service
+            var animals = await _animalService.GetAllAnimals();  // Wait for the async operation to complete
             return View(animals);  // Pass the list of animals to the view
         }
 
