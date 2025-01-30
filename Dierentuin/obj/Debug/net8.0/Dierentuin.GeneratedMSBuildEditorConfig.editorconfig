@@ -9,111 +9,111 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Dierentuin
 build_property.RootNamespace = Dierentuin
-build_property.ProjectDir = C:\Users\kenki\source\repos\DierenTuinGoede\Dierentuin\Dierentuin\
+build_property.ProjectDir = C:\Users\yassi\Dierentuin2\Dierentuin\Dierentuin\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\kenki\source\repos\DierenTuinGoede\Dierentuin\Dierentuin
+build_property.MSBuildProjectDirectory = C:\Users\yassi\Dierentuin2\Dierentuin\Dierentuin
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Animal/create.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Animal/create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXGNyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Animal/delete.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Animal/delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXGRlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Animal/details.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Animal/details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXGRldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Animal/index.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Animal/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXGluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Animal/update.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Animal/update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5pbWFsXHVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Category/create.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Category/create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcY3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Category/delete.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Category/delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcZGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Category/details.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Category/details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcZGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Category/index.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Category/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcaW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Category/update.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Category/update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcdXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Enclosure/create.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Enclosure/create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jbG9zdXJlXGNyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Enclosure/delete.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Enclosure/delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jbG9zdXJlXGRlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Enclosure/details.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Enclosure/details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jbG9zdXJlXGRldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Enclosure/index.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Enclosure/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jbG9zdXJlXGluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Enclosure/update.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Enclosure/update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5jbG9zdXJlXHVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Home/Index.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Home/Privacy.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Shared/Error.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Zoo/Actions.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Zoo/Actions.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vXEFjdGlvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Zoo/AutoAssign.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Zoo/AutoAssign.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vXEF1dG9Bc3NpZ24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Zoo/Index.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Zoo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcWm9vXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/_ViewImports.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/_ViewStart.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kenki/source/repos/DierenTuinGoede/Dierentuin/Dierentuin/Views/Shared/_Layout.cshtml]
+[C:/Users/yassi/Dierentuin2/Dierentuin/Dierentuin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-b99ok4z0wl
