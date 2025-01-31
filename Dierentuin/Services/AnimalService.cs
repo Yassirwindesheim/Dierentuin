@@ -1,75 +1,77 @@
 ﻿using Dierentuin.Enum;
 using Dierentuin.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using Dierentuin.Data;
+
+
+//De AnimalService beheert dieren, hun verblijven en dieet, en biedt CRUD-operaties. Het controleert ook ruimte- en beveiligingseisen voor dieren.
+//Moeilijkheden hierbij zijn het beheren van de relaties tussen dieren en verblijven, en de logica voor het controleren van ruimte- en veiligheidsvereisten.
+// Was uiteindelijk wel te doen!
+
 
 namespace Dierentuin.Services
-
-
 {
     public class AnimalService
     {
         private readonly DBContext _context;
 
-        // Constructor to inject DBContext via dependency injection
+        // Constructor om DBContext via dependency injection in te voegen
         public AnimalService(DBContext context)
         {
             _context = context;
         }
 
-        // CRUD Operations
+        // CRUD Operaties
         public async Task<List<Animal>> GetAllAnimals()
         {
-            return await _context.Animals.ToListAsync();
+            var animals = await _context.Animals.ToListAsync(); // Haal alle dieren op
+            return animals;
         }
 
         public Animal GetAnimalById(int id)
         {
             var animal = _context.Animals
-                .Include(a => a.Category)  // Include related Category
-                .Include(a => a.Enclosure) // Include related Enclosure
-                .FirstOrDefault(a => a.Id == id); // Retrieve animal by ID
+                .Include(a => a.Category)  // Laad de gerelateerde Categorie
+                .Include(a => a.Enclosure) // Laad de gerelateerde Enclosure
+                .FirstOrDefault(a => a.Id == id); // Haal het dier op via ID
 
-            // If Category or Enclosure is null, you can set a default or handle accordingly
+            // Als Categorie of Enclosure null is, stel een default in
             if (animal != null)
             {
-                animal.Category ??= new Category { Name = "Unknown" };  // Default Category if null
-                animal.Enclosure ??= new Enclosure { Name = "Unknown" };  // Default Enclosure if null
+                animal.Category ??= new Category { Name = "Unknown" };  // Standaard Categorie als null
+                animal.Enclosure ??= new Enclosure { Name = "Unknown" };  // Standaard Enclosure als null
             }
 
             return animal;
         }
 
-
         public Animal CreateAnimal(Animal animal)
         {
             try
             {
-                _context.Animals.Add(animal);
-                _context.SaveChanges();
-                Console.WriteLine($"Animal {animal.Name} created successfully");
+                _context.Animals.Add(animal); // Voeg nieuw dier toe
+                _context.SaveChanges(); // Sla de veranderingen op in de database
+                Console.WriteLine($"Dier {animal.Name} succesvol aangemaakt");
                 return animal;
             }
             catch (DbUpdateException ex)
             {
-                Console.WriteLine($"Database error creating animal: {ex.InnerException?.Message}");
+                Console.WriteLine($"Databasefout bij het aanmaken van dier: {ex.InnerException?.Message}");
                 throw;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error creating animal: {ex.Message}");
+                Console.WriteLine($"Fout bij het aanmaken van dier: {ex.Message}");
                 throw;
             }
         }
 
         public Animal UpdateAnimal(Animal updatedAnimal)
         {
-            var existingAnimal = _context.Animals.FirstOrDefault(a => a.Id == updatedAnimal.Id);
+            var existingAnimal = _context.Animals.FirstOrDefault(a => a.Id == updatedAnimal.Id); // Zoek bestaand dier
             if (existingAnimal != null)
             {
+                // Werk de eigenschappen van het dier bij
                 existingAnimal.Name = updatedAnimal.Name;
                 existingAnimal.ActivityPattern = updatedAnimal.ActivityPattern;
                 existingAnimal.Diet = updatedAnimal.Diet;
@@ -79,28 +81,28 @@ namespace Dierentuin.Services
                 existingAnimal.SpaceRequirement = updatedAnimal.SpaceRequirement;
                 existingAnimal.Size = updatedAnimal.Size;
                 existingAnimal.Species = updatedAnimal.Species;
-                _context.SaveChanges();
+                _context.SaveChanges(); // Sla de veranderingen op
             }
             return existingAnimal;
         }
 
         public bool DeleteAnimal(int id)
         {
-            var animalToDelete = _context.Animals.FirstOrDefault(a => a.Id == id);
+            var animalToDelete = _context.Animals.FirstOrDefault(a => a.Id == id); // Zoek dier om te verwijderen
             if (animalToDelete != null)
             {
-                _context.Animals.Remove(animalToDelete); // Remove animal from the database
-                _context.SaveChanges(); // Save changes to the database
+                _context.Animals.Remove(animalToDelete); // Verwijder het dier uit de database
+                _context.SaveChanges(); // Sla de veranderingen op in de database
                 return true;
             }
             return false;
         }
 
-        // Actions
+        // Acties
 
         public void Sunrise(Animal animal)
         {
-            if (animal.ActivityPattern == ActivityPattern.Diurnal)
+            if (animal.ActivityPattern == ActivityPattern.Diurnal) // Als dier dagactief is
             {
                 Console.WriteLine($"{animal.Name} is wakker geworden.");
             }
@@ -112,11 +114,11 @@ namespace Dierentuin.Services
 
         public void Sunset(Animal animal)
         {
-            if (animal.ActivityPattern == ActivityPattern.Nocturnal)
+            if (animal.ActivityPattern == ActivityPattern.Nocturnal) // Als dier nachtdier is
             {
                 Console.WriteLine($"{animal.Name} is wakker geworden.");
             }
-            else if (animal.ActivityPattern == ActivityPattern.Diurnal)
+            else if (animal.ActivityPattern == ActivityPattern.Diurnal) // Als dier dagactief is
             {
                 Console.WriteLine($"{animal.Name} gaat slapen.");
             }
@@ -124,20 +126,18 @@ namespace Dierentuin.Services
 
         public void FeedingTime(Animal animal)
         {
-            if (animal.Diet == DietaryClass.Carnivore)
+            if (animal.Diet == DietaryClass.Carnivore) // Carnivoor dieet
             {
                 Console.WriteLine($"{animal.Name} eet vlees.");
             }
-            else if (animal.Diet == DietaryClass.Herbivore)
+            else if (animal.Diet == DietaryClass.Herbivore) // Herbivoor dieet
             {
                 Console.WriteLine($"{animal.Name} eet planten.");
             }
-            else if (animal.Diet == DietaryClass.Omnivore)
+            else if (animal.Diet == DietaryClass.Omnivore) // Omnivoor dieet
             {
                 Console.WriteLine($"{animal.Name} eet zowel vlees als planten.");
             }
-
-
         }
     }
 }

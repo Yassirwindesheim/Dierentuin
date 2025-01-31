@@ -4,14 +4,15 @@ namespace Dierentuin.Models
 {
     public class Category
     {
-        public int? Id { get; set; }                 // Unique identifier
-        public string? Name { get; set; }            // Name of the category (e.g., Mammals, Birds)
+        public int? Id { get; set; }                 // Unieke identifier voor de categorie (bijv. Zoogdieren, Vogels)
 
-        // Relationships
-        public List<Animal>? Animals { get; set; }   // Optional list of animals in this category
+        public string? Name { get; set; }            // Naam van de categorie (bijv. Zoogdieren, Vogels)
 
-        // List of animal IDs for creating or associating animals with this category
-        [NotMapped]
-        public List<int> AnimalIds { get; set; } = new List<int>();
+        // Relaties
+        public List<Animal>? Animals { get; set; }   // Optionele lijst van dieren in deze categorie
+
+        // Lijst van dier-ID's voor het creëren of associëren van dieren met deze categorie
+        [NotMapped]  // Dit veld wordt niet gemapt naar de database
+        public List<int> AnimalIds { get; set; } = new List<int>();  // Lijst van dier-ID's die gekoppeld zijn aan deze categorie
     }
 }

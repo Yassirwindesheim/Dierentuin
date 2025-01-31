@@ -1,0 +1,234 @@
+﻿@model Dierentuin.Models.Zoo
+
+@{
+    ViewData["Title"] = "Zoo Details";
+}
+
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+            <div class="px-8 py-6">
+                <!-- Zoo Header -->
+                <h2 class="text-4xl font-extrabold text-green-800 mb-6 border-b border-gray-200 pb-4">@Model.Name</h2>
+
+                <!-- Actions Section -->
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold text-green-600 border-b border-gray-200 pb-4">Actions</h3>
+                    <div class="flex space-x-6 mt-4">
+                        <!-- Check Sunset -->
+                        <div class="flex-1">
+                            <button id="checkSunset" onclick="handleSunsetRequest()" class="w-full py-2 px-4 bg-green-600 text-white font-bold rounded-lg shadow-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-200 ease-in-out">
+                                Check Sunset
+                            </button>
+                        </div>
+                        <div class="result hidden" id="sunset-result-container">
+                            <ul id="sunset-result"></ul>
+                        </div>
+
+                        <!-- Check Sunrise -->
+                        <div class="flex-1">
+                            <button id="checkSunrise" onclick="handleSunriseRequest()" class="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-200 ease-in-out">
+                                Check Sunrise
+                            </button>
+                        </div>
+                        <div class="result hidden" id="sunrise-result-container">
+                            <ul id="sunrise-result"></ul>
+                        </div>
+
+                        <!-- Check Feeding Time -->
+                        <div class="flex-1">
+                            <button id="checkFeedingTime" onclick="handleFeedingTimeRequest()" class="w-full py-2 px-4 bg-yellow-600 text-white font-bold rounded-lg shadow-lg hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-200 ease-in-out">
+                                Check Feeding Time
+                            </button>
+                        </div>
+                        <div class="result hidden" id="feeding-time-result-container">
+                            <ul id="feeding-time-result"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Zoo Details Section -->
+                <div class="mt-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-medium text-gray-700">Zoo ID:</span>
+                        <span class="text-lg font-bold text-green-600">@Model.Id</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-medium text-gray-700">Number of Animals:</span>
+                        <span class="text-lg font-bold text-green-600">@Model.Animals.Count</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-lg font-medium text-gray-700">Number of Enclosures:</span>
+                        <span class="text-lg font-bold text-green-600">@Model.Enclosures.Count</span>
+                    </div>
+                </div>
+
+                <!-- Enclosures Table -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold text-green-600 border-b border-gray-200 pb-4">Enclosures in this Zoo</h3>
+                    @if (Model.Enclosures != null && Model.Enclosures.Any())
+                    {
+                        <table class="min-w-full divide-y divide-gray-200 mt-4">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Climate</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Habitat Type</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Security Level</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach (var enclosure in Model.Enclosures)
+                                {
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">@enclosure.Name</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">@enclosure.Climate</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">@enclosure.HabitatType</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">@enclosure.SecurityLevel</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="mt-2 text-sm text-gray-500">No enclosures are currently assigned to this zoo.</p>
+                    }
+                </div>
+
+                <!-- Animals Table -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold text-green-600 border-b border-gray-200 pb-4">Animals in this Zoo</h3>
+                    @if (Model.Animals != null && Model.Animals.Any())
+                    {
+                        <table class="min-w-full divide-y divide-gray-200 mt-4">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Species</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Diet</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach (var animal in Model.Animals)
+                                {
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">@animal.Name</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">@animal.Species</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">@animal.Diet</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">@animal.Size</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="mt-2 text-sm text-gray-500">No animals are currently in this zoo.</p>
+                    }
+                </div>
+            </div>
+
+            <!-- Back Button -->
+            <div class="flex justify-end p-4 bg-gray-50 border-t border-gray-200">
+                <a href="@Url.Action("Index")" class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-md shadow-lg focus:outline-none focus:ring-2 focus:ring-green-400 transition-all duration-200 ease-in-out">
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for handling requests (Feeding Time, Sunrise, Sunset)
+    async function handleFeedingTimeRequest() {
+        const zooId = 7;
+        const animalIds = [3];
+
+        try {
+            const response = await fetch(`/Api/ZooApi/feeding-time/${zooId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ AnimalId: animalIds })
+            });
+
+            const data = await response.json();
+            const resultContainer = document.getElementById("feeding-time-result");
+            resultContainer.innerHTML = "";
+            const resultContainerWrapper = document.getElementById("feeding-time-result-container");
+            if (data.$values.length === 0) {
+                resultContainerWrapper.style.display = 'none';
+            } else {
+                resultContainerWrapper.style.display = 'block';
+                data.$values.forEach(message => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = message;
+                    resultContainer.appendChild(listItem);
+                });
+            }
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+    }
+
+    async function handleSunriseRequest() {
+        const zooId = 7;
+        const animalIds = [3];
+
+        try {
+            const response = await fetch(`/Api/ZooApi/sunrise/${zooId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ AnimalId: animalIds })
+            });
+
+            const data = await response.json();
+            const resultContainer = document.getElementById("sunrise-result");
+            resultContainer.innerHTML = "";
+            const resultContainerWrapper = document.getElementById("sunrise-result-container");
+            if (data.$values.length === 0) {
+                resultContainerWrapper.style.display = 'none';
+            } else {
+                resultContainerWrapper.style.display = 'block';
+                data.$values.forEach(message => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = message;
+                    resultContainer.appendChild(listItem);
+                });
+            }
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+    }
+
+    async function handleSunsetRequest() {
+        const zooId = 7;
+        const animalIds = [3];
+
+        try {
+            const response = await fetch(`/Api/ZooApi/sunset/${zooId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ AnimalId: animalIds })
+            });
+
+            const data = await response.json();
+            const resultContainer = document.getElementById("sunset-result");
+            resultContainer.innerHTML = "";
+            const resultContainerWrapper = document.getElementById("sunset-result-container");
+            if (data.$values.length === 0) {
+                resultContainerWrapper.style.display = 'none';
+            } else {
+                resultContainerWrapper.style.display = 'block';
+                data.$values.forEach(message => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = message;
+                    resultContainer.appendChild(listItem);
+                });
+            }
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+    }
+</script>

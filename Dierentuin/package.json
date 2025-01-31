@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "eslint": "^9.19.0"
+  },
+  "dependencies": {
+    "cypress": "^14.0.1"
+  }
+}

@@ -1,0 +1,50 @@
+﻿@model Dierentuin.Models.Zoo
+
+@{
+    ViewData["Title"] = "Delete Zoo";
+}
+
+<div class="min-h-screen bg-gradient-to-b from-green-50 to-green-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <div class="px-6 py-5">
+                <h2 class="text-3xl font-extrabold text-green-800 mb-6">Are you sure you want to delete this Zoo?</h2>
+
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Zoo Name</label>
+                            <input type="text" class="py-3 px-4 block w-full text-base border-2 border-gray-300 focus:ring-green-500 focus:border-green-500 rounded-md transition duration-200 ease-in-out" value="@Model.Name" readonly />
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Animals in this Zoo</label>
+                            <ul class="list-disc pl-5 text-sm text-gray-700">
+                                @foreach (var animal in Model.Animals)
+                                {
+                                    <li>@animal.Name</li>
+                                }
+                            </ul>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Enclosures in this Zoo</label>
+                            <ul class="list-disc pl-5 text-sm text-gray-700">
+                                @foreach (var enclosure in Model.Enclosures)
+                                {
+                                    <li>@enclosure.Name</li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 space-x-4">
+                        <button type="submit" class="btn btn-danger">Delete Zoo</button>
+                        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

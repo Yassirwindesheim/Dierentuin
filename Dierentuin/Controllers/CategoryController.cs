@@ -2,132 +2,124 @@
 using Dierentuin.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+
 
 namespace Dierentuin.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly CategoryService _categoryService;
-        private readonly AnimalService _animalService; // Add this
+        private readonly CategoryService _categoryService;  // Service voor het beheer van categorieën
+        private readonly AnimalService _animalService;  // Service voor het beheren van dieren
 
-        // Constructor to inject CategoryService via dependency injection
+        // Constructor om CategoryService en AnimalService via dependency injection te injecteren
         public CategoryController(CategoryService categoryService, AnimalService animalService)
         {
             _categoryService = categoryService;
             _animalService = animalService;
         }
 
-        // Action for listing all categories (GET)
+        // Actie voor het weergeven van alle categorieën (GET)
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryService.GetAllCategories();  // Fetch categories asynchronously
-            return View(categories);  // Pass categories to the view
+            var categories = await _categoryService.GetAllCategories();  // Haal de categorieën asynchroon op
+            return View(categories);  // Geef de categorieën door naar de view
         }
 
-        // Action for viewing details of a specific category (GET)
+        // Actie voor het weergeven van de details van een specifieke categorie (GET)
         public async Task<IActionResult> Details(int id)
         {
-            var category = await _categoryService.GetCategoryById(id);  // Fetch category asynchronously
+            var category = await _categoryService.GetCategoryById(id);  // Haal de categorie asynchroon op
             if (category == null)
             {
-                return NotFound();  // Return 404 if the category doesn't exist
+                return NotFound();  // Retourneer 404 als de categorie niet bestaat
             }
-            return View(category);  // Pass category to the view for details
+            return View(category);  // Geef de categorie door naar de view voor details
         }
 
-        // Action for creating a new category (GET)
+        // Actie voor het creëren van een nieuwe categorie (GET)
         public async Task<IActionResult> Create()
         {
-            var animals = await _animalService.GetAllAnimals();
-            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name");
+            var animals = await _animalService.GetAllAnimals();  // Haal alle dieren op
+            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name");  // Maak een MultiSelectList voor dieren
             return View();
         }
 
-
-        // Action for creating a new category (POST)
+        // Actie voor het creëren van een nieuwe categorie (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category category)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)  // Als het model geldig is
             {
-                await _categoryService.CreateCategory(category);
-                return RedirectToAction(nameof(Index));
+                await _categoryService.CreateCategory(category);  // Maak de categorie aan
+                return RedirectToAction(nameof(Index));  // Redirect naar de indexpagina na het aanmaken van de categorie
             }
-            var animals = await _animalService.GetAllAnimals();
-            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name");
-            return View(category);
+            var animals = await _animalService.GetAllAnimals();  // Haal de dieren opnieuw op voor de dropdown
+            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name");  // Geef de dieren door naar de view
+            return View(category);  // Retourneer het formulier als het model niet geldig is
         }
 
-        // Action for updating an existing category (GET)
-        // Action for updating an existing category (GET)
+        // Actie voor het bijwerken van een bestaande categorie (GET)
         public async Task<IActionResult> Update(int id)
         {
-            var category = await _categoryService.GetCategoryById(id);
+            var category = await _categoryService.GetCategoryById(id);  // Haal de categorie op via het ID
             if (category == null)
             {
-                return NotFound();
+                return NotFound();  // Retourneer 404 als de categorie niet gevonden wordt
             }
 
-            var animals = await _animalService.GetAllAnimals();
-            // Get currently selected animal IDs from the CategoryService
-            var selectedAnimalIds = await _categoryService.GetAnimalIdsByCategoryId(id);
+            var animals = await _animalService.GetAllAnimals();  // Haal de dieren op
+            var selectedAnimalIds = await _categoryService.GetAnimalIdsByCategoryId(id);  // Haal de geselecteerde dier-ID's op voor de categorie
 
-            // Ensure AnimalIds is set for the view
+            // Zet de geselecteerde dier-ID's voor de view
             category.AnimalIds = selectedAnimalIds;
 
-            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name", selectedAnimalIds);
+            ViewBag.Animals = new MultiSelectList(animals, "Id", "Name", selectedAnimalIds);  // Geef de dieren en geselecteerde ID's door naar de view
             return View(category);
         }
 
-
-
-        // Add this method to CategoryService.cs
-
-        // Action for updating an existing category (POST)
+        // Actie voor het bijwerken van een bestaande categorie (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(Category updatedCategory)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)  // Als het model geldig is
             {
-                var category = await _categoryService.UpdateCategory(updatedCategory);  // Update the category in the database asynchronously
+                var category = await _categoryService.UpdateCategory(updatedCategory);  // Werk de categorie bij in de database
                 if (category == null)
                 {
-                    return NotFound();  // Return 404 if the category update failed
+                    return NotFound();  // Retourneer 404 als de categorie-update mislukt
                 }
-                return RedirectToAction(nameof(Index));  // Redirect to index after successful update
+                return RedirectToAction(nameof(Index));  // Redirect naar de indexpagina na succesvolle update
             }
 
-            return View(updatedCategory);  // Return the view if the model is invalid
+            return View(updatedCategory);  // Retourneer de view als het model ongeldig is
         }
 
-        // Action for deleting a category (GET)
+        // Actie voor het verwijderen van een categorie (GET)
         public async Task<IActionResult> Delete(int id)
         {
-            var category = await _categoryService.GetCategoryById(id);  // Fetch category asynchronously
+            var category = await _categoryService.GetCategoryById(id);  // Haal de categorie op via het ID
             if (category == null)
             {
-                return NotFound();  // Return 404 if the category doesn't exist
+                return NotFound();  // Retourneer 404 als de categorie niet gevonden wordt
             }
 
-            return View(category);  // Pass category to the view for deletion confirmation
+            return View(category);  // Geef de categorie door naar de view voor de bevestiging van verwijdering
         }
 
-        // Action for deleting a category (POST)
+        // Actie voor het bevestigen van het verwijderen van een categorie (POST)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var success = await _categoryService.DeleteCategory(id);  // Delete the category asynchronously
+            var success = await _categoryService.DeleteCategory(id);  // Verwijder de categorie asynchroon
             if (success)
             {
-                return RedirectToAction(nameof(Index));  // Redirect to the index page after deletion
+                return RedirectToAction(nameof(Index));  // Redirect naar de indexpagina na verwijdering
             }
 
-            return NotFound();  // Return 404 if the category wasn't found
+            return NotFound();  // Retourneer 404 als de categorie niet gevonden wordt
         }
     }
 }

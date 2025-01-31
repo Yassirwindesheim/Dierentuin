@@ -6,30 +6,29 @@ namespace Dierentuin.Models
 {
     public class Animal
     {
-        public int Id { get; set; }                // Unique identifier
+        public int Id { get; set; }                // Unieke identifier voor het dier
 
-       
-        public string? Name { get; set; }            // Name of the animal
+        public string? Name { get; set; }            // Naam van het dier
 
-        public string? Species { get; set; }         // Species of the animal
+        public string? Species { get; set; }         // Soort van het dier
 
-        public AnimalSize Size { get; set; }        // Size (enum: Microscopic, Small, etc.)
+        public AnimalSize Size { get; set; }        // Grootte van het dier (enum: Microscopisch, Klein, etc.)
 
-        public DietaryClass Diet { get; set; }      // Diet (enum: Carnivore, Herbivore, etc.)
+        public DietaryClass Diet { get; set; }      // Dieet van het dier (enum: Carnivoor, Herbivoor, etc.)
 
-        public ActivityPattern ActivityPattern { get; set; } // When the animal is active (enum: Diurnal, etc.)
+        public ActivityPattern ActivityPattern { get; set; } // Activiteitspatroon van het dier (enum: Dagactief, etc.)
 
-        public List<Animal>? Prey { get; set; }      // List of animals that this animal preys on
+        public List<Animal>? Prey { get; set; }      // Lijst van dieren waar dit dier op jaagt (prooi)
 
-        public double SpaceRequirement { get; set; } // Space in square meters required per animal
+        public double SpaceRequirement { get; set; } // Ruimtevereiste in vierkante meters per dier
 
-        public SecurityLevel SecurityRequirement { get; set; } // Security level (Low, Medium, High)
+        public SecurityLevel SecurityRequirement { get; set; } // Beveiligingsniveau (Laag, Medium, Hoog)
 
-        // Relationships
-        public int? CategoryId { get; set; }         // Foreign key to Category
-        public Category? Category { get; set; }      // Navigation property to Category
+        // Relaties
+        public int? CategoryId { get; set; }         // Foreign sleutel naar de Categorie
+        public Category? Category { get; set; }      // Navigatie-eigenschap naar de Categorie
 
-        public int? EnclosureId { get; set; }        // Foreign key to Enclosure
-        public Enclosure? Enclosure { get; set; }    // Navigation property to Enclosure
+        public int? EnclosureId { get; set; }        // Foreign sleutel naar het Hok
+        public Enclosure? Enclosure { get; set; }    // Navigatie-eigenschap naar het Hok
     }
 }

@@ -1,3 +1,4 @@
+using Dierentuin.Data;
 using Dierentuin.Models;
 using Dierentuin.Services; // Ensure you have this using directive
 using Microsoft.EntityFrameworkCore;
@@ -9,9 +10,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Register services with Dependency Injection container
 builder.Services.AddScoped<ZooService>();
+builder.Services.AddScoped<Zoo>(provider => new Zoo
+{
+    Animals = new List<Animal>(),
+    Enclosures = new List<Enclosure>()
+});
 builder.Services.AddScoped<AnimalService>();
 builder.Services.AddScoped<EnclosureService>();
 builder.Services.AddScoped<CategoryService>();
+
 
 // Add controllers and configure JSON options to handle enum values and circular references
 builder.Services.AddControllersWithViews()
@@ -62,7 +69,7 @@ app.UseSwaggerUI(c =>
 // Map MVC controller routes (Views)
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Animal}/{action=Test}/{id?}");
+    pattern: "{controller=Animal}/{action=Index}/{id?}");
 // Default route starts with Animal controller
 
 app.MapControllers(); // Still map API controllers if needed
