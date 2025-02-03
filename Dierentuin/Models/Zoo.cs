@@ -18,6 +18,7 @@
         {
             Animals = new List<Animal>();     // Initialiseer de dierenlijst
             Enclosures = new List<Enclosure>(); // Initialiseer de omheiningenlijst
+            EnclosureIds = new List<int>(); // initialiseert enclosureids lijst naar een lege lijst (dit heb ik ook nodig voor de testen)
         }
 
         // Lijst van dier-ID's voor het creëren of koppelen van dieren aan deze dierentuin
