@@ -1,0 +1,9 @@
+(zelf geschreven, maar qua structuur verbeterd met chatGPT)
+
+Om een specifieke file te testen gebruk je deze command. 
+
+dotnet test --filter "FullyQualifiedName~CategoryServiceTests"
+
+om alles te gelijk te testen doe je dit
+
+dotnest test 
